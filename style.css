@@ -1,0 +1,55 @@
+html { 
+    background-color: #36393F;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+body {
+    margin: 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    margin-top: 100px;
+    width: 100%;
+    text-align: center;
+}
+
+#navbar {
+    background-color: #2F3136;
+    width: 45%;
+    height: 1000px;
+}
+
+#mainInterface {
+    width: 100%;
+}
+
+.banner {
+    background-color: #dc4c3f;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100px;
+    width: 100%;
+}
+
+.banner a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.banner a:hover {
+    background-color: grey;
+}
