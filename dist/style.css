@@ -25,16 +25,19 @@ body {
 
 #navbar {
     background-color: #2F3136;
-    width: 45%;
+    width: 20%;
     height: 1000px;
 }
 
-#mainInterface {
+#interface {
     width: 100%;
 }
 
 .banner {
-    background-color: #dc4c3f;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #6B768C;
     position: fixed;
     left: 0;
     top: 0;
@@ -52,4 +55,16 @@ body {
 
 .banner a:hover {
     background-color: grey;
+}
+
+.bannerItems {
+    margin-left: 40px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 160%;
+}
+
+.slogan {
+    font-size: 60%;
+    color: white;
+    font-style: italic;
 }
