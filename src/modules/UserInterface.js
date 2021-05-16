@@ -40,6 +40,16 @@ function createNavbar() {
     let navbar = document.createElement('div');
     navbar.setAttribute('id', 'navbar');
     navbar.classList.add('navbar');
+    let mainNav = document.createElement('div');
+    mainNav.setAttribute('id', 'mainNav');
+    let projectNav = document.createElement('div');
+    projectNav.setAttribute('id', 'projectNav');
+    navbar.appendChild(mainNav);
+    navbar.appendChild(projectNav);
+    mainNav.appendChild(addNavItem('today', 'today', 'Today'));
+    mainNav.appendChild(addNavItem('week', 'week', 'Week'));
+    mainNav.appendChild(addNavItem('month', 'month', 'Month'));
+    projectNav.appendChild(addNavItem('projects', 'projects', 'Projects'));
     return navbar;
 }
 
@@ -49,7 +59,6 @@ function addNavItem(name, classList, text) {
     navItem.setAttribute('id', `${name}`);
     navItem.classList.add(`${classList}`);
     navItem.textContent = `${text}`;
-    navbar.appendChild(navItem);
     return navItem;
 }
 
