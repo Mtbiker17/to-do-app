@@ -1,3 +1,5 @@
+import { createTask } from './TaskFunctions.js';
+
 function initializeHomepage() {
     const content = document.getElementById('content');
     content.appendChild(createBanner());
@@ -32,7 +34,7 @@ function createMain() {
     let main = document.createElement('div');
     main.classList.add('main');
     main.appendChild(createNavbar());
-    main.appendChild(createuserInterface());
+    main.appendChild(createUserInterface());
     return main;
 }
 
@@ -49,7 +51,9 @@ function createNavbar() {
     mainNav.appendChild(addNavItem('today', 'today', 'Today'));
     mainNav.appendChild(addNavItem('week', 'week', 'Week'));
     mainNav.appendChild(addNavItem('month', 'month', 'Month'));
+    mainNav.appendChild(addNavItem('important', 'important', 'Important'));
     projectNav.appendChild(addNavItem('projects', 'projects', 'Projects'));
+
     return navbar;
 }
 
@@ -59,15 +63,26 @@ function addNavItem(name, classList, text) {
     navItem.setAttribute('id', `${name}`);
     navItem.classList.add(`${classList}`);
     navItem.textContent = `${text}`;
+
     return navItem;
 }
 
-function createuserInterface() {
+function createUserInterface() {
     let userInterface = document.createElement('userInterface');
     userInterface.setAttribute('id', 'userInterface');
     userInterface.classList.add('userInterface');
+    let currentTitle = document.createElement('div');
+    currentTitle.classList.add('currentTitle');
+    currentTitle.textContent = 'Today';
+    userInterface.appendChild(currentTitle);
+
     return userInterface;
 }
+
+//testing task factory
+const taskbro = createTask('Mow', 'Mow the roof', 'november', 'high', 'dont want to')
+const taskyo = createTask('run', 'run the road', 'septovember', 'low', 'dont want to')
+console.log(taskbro, taskyo);
 
 export {
     initializeHomepage,
