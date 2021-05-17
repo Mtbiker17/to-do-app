@@ -33,8 +33,19 @@ body {
     font-family: 'PT Sans', sans-serif;
 }
 
-#interface {
+#userInterface {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding: 40px;
+    text-align: left;
+}
+
+.currentTitle {
+    font-family:'PT sans', sans-serif;
+    color: white;
+    font-size: 300%;
 }
 
 .banner {
@@ -155,6 +166,27 @@ body {
 .projects::before {
     content: url('./images/projects.svg');
     padding: 10px;
+}
+
+.projects::after {
+    content: url('./images/right.svg');
+    padding: 10px;
+}
+
+
+.important {
+    width: 230px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.important::before {
+    content: url('./images/important.svg');
+    padding: 10px;
+}
+
+.important:hover {
+    background-color: #6a6e77;
 }
 
 
