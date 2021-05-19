@@ -48,14 +48,15 @@ function createNavbar() {
     projectNav.setAttribute('id', 'projectNav');
     navbar.appendChild(mainNav);
     navbar.appendChild(projectNav);
+    mainNav.appendChild(addNavItem('inbox', 'inbox', 'Inbox'));
     mainNav.appendChild(addNavItem('today', 'today', 'Today'));
     mainNav.appendChild(addNavItem('week', 'week', 'Week'));
     mainNav.appendChild(addNavItem('month', 'month', 'Month'));
     mainNav.appendChild(addNavItem('important', 'important', 'Important'));
     projectNav.appendChild(addNavItem('projects', 'projects', 'Projects'));
-
     return navbar;
 }
+
 
 //function to add navbar item
 function addNavItem(name, classList, text) {
@@ -86,5 +87,6 @@ console.log(taskbro, taskyo);
 
 export {
     initializeHomepage,
+    createBanner
 }
 
