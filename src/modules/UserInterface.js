@@ -87,6 +87,5 @@ console.log(taskbro, taskyo);
 
 export {
     initializeHomepage,
-    createBanner
 }
 
