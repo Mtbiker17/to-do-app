@@ -114,6 +114,20 @@ body {
     color: white;
 }
 
+.inbox {
+    width: 230px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.inbox::before {
+    content: url('./images/inbox.svg');
+    padding: 10px;
+}
+.inbox:hover {
+    background-color: #6a6e77 ;
+}
+
 .today {
     width: 230px;
     border-radius: 5px;
