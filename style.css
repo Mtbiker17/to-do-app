@@ -42,7 +42,7 @@ body {
     text-align: left;
 }
 
-.currentTitle {
+#currentTitle {
     font-family:'PT sans', sans-serif;
     color: white;
     font-size: 300%;
@@ -59,18 +59,6 @@ body {
     top: 0;
     height: 100px;
     width: 100%;
-}
-
-.banner a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.banner a:hover {
-    background-color: grey;
 }
 
 .bannerItems {
@@ -90,7 +78,7 @@ body {
     flex-direction: column;
     justify-content: space-around;
     text-align: left;
-    padding: 25px 0px 5px 25px;
+    padding: 25px 20px 0px 25px;
     font-family: inherit;
     height: auto;
     width: auto;
@@ -114,92 +102,67 @@ body {
     color: white;
 }
 
-.inbox {
+.mainNavItems {
     width: 230px;
     border-radius: 5px;
     padding: 5px;
 }
 
-.inbox::before {
+#inbox::before {
     content: url('./images/inbox.svg');
     padding: 10px;
 }
-.inbox:hover {
+#inbox:hover {
     background-color: #6a6e77 ;
 }
 
-.today {
-    width: 230px;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.today::before {
+#today::before {
     content: url('./images/today.svg');
     padding: 10px;
 }
-.today:hover {
+#today:hover {
     background-color: #6a6e77 ;
 }
 
-.week {
-    width: 230px;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.week::before {
+#week::before {
     content: url('./images/week.svg');
     padding: 10px;
 }
 
-.week:hover {
+#week:hover {
     background-color: #6a6e77;
 }
 
-.month {
-    width: 230px;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.month::before {
+#month::before {
     content: url('./images/month.svg');
     padding: 10px;
 }
 
-.month:hover {
+#month:hover {
     background-color: #6a6e77;
 }
 
-.projects {
+#projects {
     width: 230px;
     border-radius: 5px;
 }
 
-.projects::before {
+#projects::before {
     content: url('./images/projects.svg');
     padding: 10px;
 }
 
-.projects::after {
+#projects::after {
     content: url('./images/right.svg');
     padding: 10px;
 }
 
-
-.important {
-    width: 230px;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.important::before {
+#important::before {
     content: url('./images/important.svg');
     padding: 10px;
 }
 
-.important:hover {
+#important:hover {
     background-color: #6a6e77;
 }
 
