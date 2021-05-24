@@ -21,15 +21,15 @@ const navbarButtonController = (() => {
     important.addEventListener('click', () => {
         currentTitle.textContent = 'Important'
     })
-
-    taskTitle.addEventListener('click', () => console.log('hi'))
 })();
 
+//add javascript for modal
 
+const addNewTask = () => {
+//factory
+//code for modul popup to enter new task object information
 
-
-
-
+}
 
 
 //testing task factory
