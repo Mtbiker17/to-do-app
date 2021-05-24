@@ -21,6 +21,21 @@
             </div>
         </div>
         <div class='main'>
+            <div class='modal' id='taskModal'>
+                <div class="modal-content">
+                    <div>Title</div>
+                    <input class='modal-input'>
+                    <div>Notes</div>
+                    <input class='modal-input'>
+                    <div>Task Priority</div>
+                    <select class='modal-input'>Priority
+                        <option value='standard'>Standard</option>
+                        <option value='Important'>Important</option>
+                    </select>
+                    <div>Due Date</div>
+                    <input type="date" id='modal-dateinput' class='modal-input'>
+                </div>
+            </div>
             <div id='navbar'>
                 <div id='mainNav'>
                     <div class='mainNavItems' id='inbox'>Inbox</div>
@@ -40,16 +55,17 @@
                     <div id='task'>
                         <div id='taskTitle'>Mow the Lawn</div>
                         <div id='taskNotes'>Notes:
-                            <div id='notes'>Notes Go Here</div>
+                            <div id='notes'></div>
                         </div>
-                        <div id='taskPriority'>Priority:
-                            <div id='priority'>High</div>
+                        <div id='taskPriority'>Due Date:
+                            <input type='date' id='priority'>
                         </div>
-
                     </div>
+
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <script src="main.js"></script>
 </body>
