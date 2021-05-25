@@ -1,5 +1,5 @@
 import { isToday } from 'date-fns';
-import { createTask } from './TaskFunctions.js';
+import { createTask, submitTask } from './TaskFunctions.js';
 
 function initializeHomepage() {
 
@@ -23,14 +23,16 @@ const navbarButtonController = (() => {
     })
 })();
 
-//add javascript for modal
+const modalController = (() => {
+    addTask.addEventListener('click', () => {
+        taskModal.style.display = 'flex';
+    })
+    
+    closeBtn.onclick = function () {
+        taskModal.style.display = "none";
+    }
 
-const addNewTask = () => {
-//factory
-//code for modul popup to enter new task object information
-
-}
-
+})();
 
 //testing task factory
 const taskbro = new createTask('Mow', '', '', '')

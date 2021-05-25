@@ -24,7 +24,7 @@ body {
 }
 
 .modal {
-    display: flex; 
+    display: none; 
     position: fixed; 
     z-index: 1; 
     left: 30%;
@@ -45,6 +45,54 @@ body {
     padding: 20px;
     font-family: 'PT Sans', sans-serif;
     font-size: 160%;
+    width: 100%;
+}
+
+.modal-input {
+    border:none;
+    border-bottom: 1px solid black;
+    padding: 5px 10px;
+    outline: none;
+    background-color: white;
+}
+
+.modal-input:hover {
+    background-color: rgba(45, 200, 111, 0.3);
+    transition: all 0.4s ease 0s;
+}
+
+#closeBtn {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: 95%;
+}
+
+#closeBtn:hover,
+#closeBtn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#submitTask {
+    width: 30%;
+    margin: auto;
+    border: none;
+    text-transform: uppercase;
+	text-decoration: none;
+	background: #ffffff;
+	padding: 15px;
+	border: 3px solid #494949;
+	display: inline-block;
+	transition: all 0.4s ease 0s;
+}
+
+#submitTask:hover {
+    color: black;
+	background: rgba(45, 200, 111, 0.3);
+	border-color: rgba(45, 200, 111, 0.3);
+	transition: all 0.4s ease 0s;
 }
 
 #navbar {

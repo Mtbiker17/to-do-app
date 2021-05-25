@@ -23,6 +23,7 @@
         <div class='main'>
             <div class='modal' id='taskModal'>
                 <div class="modal-content">
+                    <span id="closeBtn">&times;</span>
                     <div>Title</div>
                     <input class='modal-input'>
                     <div>Notes</div>
@@ -33,7 +34,8 @@
                         <option value='Important'>Important</option>
                     </select>
                     <div>Due Date</div>
-                    <input type="date" id='modal-dateinput' class='modal-input'>
+                    <input type="date" id='modal-dateinput' class='modal-input'><br>
+                    <button id='submitTask'>Add Task</button>
                 </div>
             </div>
             <div id='navbar'>

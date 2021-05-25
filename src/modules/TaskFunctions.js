@@ -22,7 +22,8 @@ class createTask {
     addNotes() {
         return this.notes;
     }
-
 }
 
-export { createTask };
+export {
+    createTask,
+};
