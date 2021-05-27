@@ -1,10 +1,11 @@
-//factory for task creation
+//class for task creation
 class createTask {
-    constructor(title, dueDate, priority, notes) {
+    constructor(title, notes, priority, dueDate, taskID) {
         this.title = title;
         this.dueDate = dueDate;
         this.priority = priority;
         this.notes = notes;
+        this.taskID = taskID
     }
 
     getTitle() {
@@ -22,8 +23,15 @@ class createTask {
     addNotes() {
         return this.notes;
     }
+
+    createTaskID() {
+        return this.taskID;
+    }
 }
+
+const taskArray = [];
 
 export {
     createTask,
+    taskArray
 };

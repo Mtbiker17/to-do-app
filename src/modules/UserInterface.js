@@ -1,5 +1,4 @@
-import { isToday } from 'date-fns';
-import { createTask, submitTask } from './TaskFunctions.js';
+import { createTask, taskArray } from './TaskFunctions.js';
 
 function initializeHomepage() {
 
@@ -32,11 +31,16 @@ const modalController = (() => {
         taskModal.style.display = "none";
     }
 
+    submitTask.addEventListener('click', () => {
+        const task = new createTask(`${submitTitle.value}`, `${submitNotes.value}`,
+        `${submitPriority.value}`, `${modaldateinput.value}`, taskArray.length)
+        taskArray.push(task);
+        console.log(task);
+        console.log(taskArray);
+    });
+
 })();
 
-//testing task factory
-const taskbro = new createTask('Mow', '', '', '')
-console.log(taskbro)
 
 export {
     initializeHomepage,
