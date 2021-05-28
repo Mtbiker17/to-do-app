@@ -1,4 +1,4 @@
-import { createTask, taskArray } from './TaskFunctions.js';
+import { createTask, organizeTaskArray } from './TaskFunctions.js';
 
 function initializeHomepage() {
 
@@ -32,11 +32,11 @@ const modalController = (() => {
     }
 
     submitTask.addEventListener('click', () => {
+        let date = modaldateinput.value;
         const task = new createTask(`${submitTitle.value}`, `${submitNotes.value}`,
-        `${submitPriority.value}`, `${modaldateinput.value}`, taskArray.length)
-        taskArray.push(task);
-        console.log(task);
-        console.log(taskArray);
+        `${submitPriority.value}`, `${modaldateinput.value}`)
+        organizeTaskArray(date, task);
+        taskModal.style.display = 'none';
     });
 
 })();
