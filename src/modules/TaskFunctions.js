@@ -1,4 +1,10 @@
-import { isToday, parseISO, isThisWeek, isThisMonth, parse } from 'date-fns'
+import { isToday, parseISO, isThisWeek, isThisMonth, } from 'date-fns'
+const taskArray = [];
+const dailyArray = [];
+const weeklyArray = [];
+const monthlyArray = [];
+const importantArray = [];
+
 //class for task creation
 class createTask {
     constructor(title, notes, priority, dueDate, taskID) {
@@ -31,11 +37,6 @@ class createTask {
 }
 
 function organizeTaskArray(date, task) {
-    const taskArray = [];
-    const dailyArray = [];
-    const weeklyArray = [];
-    const monthlyArray = [];
-    const importantArray = [];
     let currentDate = Date()
     console.log(currentDate);
 
@@ -43,19 +44,18 @@ function organizeTaskArray(date, task) {
         dailyArray.push(task);
         console.log('daily', dailyArray);
     }
-    if(isThisWeek(parseISO(date)) === true){
+    if (isThisWeek(parseISO(date)) === true) {
         weeklyArray.push(task);
         console.log('weekly', weeklyArray);
     }
-    if(isThisMonth(parseISO(date)) ===true){
+    if (isThisMonth(parseISO(date)) === true) {
         monthlyArray.push(task);
         console.log('monthly', monthlyArray);
     }
-    if(task.priority === 'Important') {
+    if (task.priority === 'Important') {
         importantArray.push(task);
         console.log('important', importantArray);
     }
-
     taskArray.push(task);
 }
 
@@ -63,9 +63,13 @@ function organizeTaskArray(date, task) {
 
 export {
     createTask,
-    organizeTaskArray
+    organizeTaskArray,
+    taskArray,
+    dailyArray,
+    weeklyArray,
+    monthlyArray,
+    importantArray
 };
-
 
 //datefns useful functions 
 
