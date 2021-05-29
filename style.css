@@ -190,7 +190,7 @@ body {
     padding-right: 10px;
 }
 
-#taskPriority {
+#dueDate {
     display: flex;
     flex-direction: column;
     color: white;
