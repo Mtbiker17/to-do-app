@@ -7,6 +7,7 @@ import {
     monthlyArray,
     importantArray
 } from './TaskFunctions.js';
+import { isBefore, parseISO, format } from 'date-fns';
 
 function initializeHomepage() {
 
@@ -30,10 +31,10 @@ const navbarButtonController = (() => {
     });
 })();
 
-const modalController = (() => {
+const taskController = (() => {
     addTask.addEventListener('click', () => {
         taskModal.style.display = 'flex';
-    })
+    });
 
     closeBtn.onclick = function () {
         taskModal.style.display = "none";
@@ -42,53 +43,76 @@ const modalController = (() => {
     const clearInfo = () => {
         submitTitle.value = '';
         submitNotes.value = '';
-        submitPriority.value = '';
+        submitPriority.value = modaldateinput.value;
         modaldateinput.value = '';
         taskModal.style.display = 'none';
     };
 
     submitTask.addEventListener('click', () => {
-        let date = modaldateinput.value;
+        if (submitTitle.value === '') {
+            alert("Task must have a title");
+            return;
+        };
+
+        //perhaps wrap this in a function
+        let date = format(parseISO(modaldateinput.value), 'MM/dd/yyyy');
+        let currentDate = format(new Date(), 'MM/dd/yyyy');
+        console.log(date, currentDate);
+
+        if (isBefore(new Date(date), new Date(currentDate)) === true) {
+            alert('This due date occurs before todays date');
+            return;
+        };
+
         const task = new createTask(`${submitTitle.value}`, `${submitNotes.value}`,
             `${submitPriority.value}`, `${modaldateinput.value}`, taskArray.length)
         organizeTaskArray(date, task);
-        console.log(taskArray)
+        showTaskUI(task.title, task.notes, task.dueDate, task.id);
         clearInfo();
-        createTaskDOM();
     });
 })();
 
-function createTaskDOM() {
+
+function showTaskUI(title, notes, date, id) {
     let task = document.createElement('div');
-    task.setAttribute('id', 'task');
-    
+    task.classList.add('task');
+    task.setAttribute('id', `${id}`);
 
     let taskTitle = document.createElement('div');
     taskTitle.setAttribute('id', 'taskTitle');
-    taskTitle.textContent = 'Mow the lawn';
+    taskTitle.textContent = `${title}`;
 
     let taskNotes = document.createElement('div');
     taskNotes.setAttribute('id', 'taskNotes');
     taskNotes.textContent = 'Notes:'
 
-    let notes = document.createElement('div');
-    notes.setAttribute('id', 'notes');
+    let notesContent = document.createElement('div');
+    notesContent.setAttribute('id', 'notes');
+    notesContent.textContent = `${notes}`
 
     let dueDate = document.createElement('div')
     dueDate.setAttribute('id', 'dueDate');
-    dueDate.textContent = 'Due Date:'
+    dueDate.textContent = `Due Date:`;
 
     let dateInput = document.createElement('input');
     dateInput.setAttribute('type', 'date');
     dateInput.setAttribute('id', 'date');
+    dateInput.value = `${date}`;
 
     task.appendChild(taskTitle);
     task.appendChild(taskNotes);
-    taskNotes.appendChild(notes);
+    taskNotes.appendChild(notesContent);
     task.appendChild(dueDate);
     dueDate.appendChild(dateInput);
     taskContainer.appendChild(task);
-}
+    return task;
+};
+//function displayNavTasks {
+//if(currentTitle.textContent = "Inbox"){
+
+//  }
+//}
+
 
 export {
     initializeHomepage,

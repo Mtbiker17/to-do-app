@@ -1,4 +1,4 @@
-import { isToday, parseISO, isThisWeek, isThisMonth, } from 'date-fns';
+import { isToday, parseISO, isThisWeek, isThisMonth, format } from 'date-fns';
 let taskArray = [];
 let dailyArray = [];
 let weeklyArray = [];
@@ -32,12 +32,11 @@ class createTask {
     };;
 
     createTaskID() {
-        return this.taskID;
+        return this.id;
     };
 };
 
 function organizeTaskArray(date, task) {
-   
     if (isToday(parseISO(date)) === true) {
         dailyArray.push(task);
         console.log('daily', dailyArray);
