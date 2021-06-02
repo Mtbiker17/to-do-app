@@ -54,10 +54,13 @@ const taskController = (() => {
             return;
         };
 
-        //perhaps wrap this in a function
+        if (modaldateinput.value === '') {
+            alert('Please enter a due date for this task')
+            return;
+        };
+
         let date = format(parseISO(modaldateinput.value), 'MM/dd/yyyy');
         let currentDate = format(new Date(), 'MM/dd/yyyy');
-        console.log(date, currentDate);
 
         if (isBefore(new Date(date), new Date(currentDate)) === true) {
             alert('This due date occurs before todays date');
@@ -66,8 +69,7 @@ const taskController = (() => {
 
         const task = new createTask(`${submitTitle.value}`, `${submitNotes.value}`,
             `${submitPriority.value}`, `${modaldateinput.value}`, taskArray.length)
-        organizeTaskArray(date, task);
-        showTaskUI(task.title, task.notes, task.dueDate, task.id);
+        organizeTaskArray(modaldateinput.value, task);
         clearInfo();
     });
 })();
@@ -105,13 +107,7 @@ function showTaskUI(title, notes, date, id) {
     task.appendChild(dueDate);
     dueDate.appendChild(dateInput);
     taskContainer.appendChild(task);
-    return task;
 };
-//function displayNavTasks {
-//if(currentTitle.textContent = "Inbox"){
-
-//  }
-//}
 
 
 export {

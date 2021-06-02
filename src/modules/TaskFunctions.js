@@ -41,7 +41,7 @@ function organizeTaskArray(date, task) {
         dailyArray.push(task);
         console.log('daily', dailyArray);
     };
-    
+
     if (isThisWeek(parseISO(date)) === true) {
         weeklyArray.push(task);
         console.log('weekly', weeklyArray);
@@ -58,7 +58,7 @@ function organizeTaskArray(date, task) {
     };
 
     taskArray.push(task);
-}
+};
 
 export {
     createTask,
