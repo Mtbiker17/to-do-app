@@ -1,11 +1,20 @@
-import { isToday, isBefore, parseISO, isThisWeek, isThisMonth, format } from 'date-fns';
+import {
+    isToday,
+    isBefore,
+    parseISO,
+    isThisWeek,
+    isThisMonth,
+    format
+} from 'date-fns';
+
+import { storeTasks } from './storageFunctions.js';
+
 let inboxArray = [];
 let dailyArray = [];
 let weeklyArray = [];
 let monthlyArray = [];
 let importantArray = [];
 
-//class for task creation
 class createTask {
     constructor(title, notes, priority, dueDate, taskID) {
         this.title = title;
@@ -36,21 +45,23 @@ class createTask {
     };
 };
 
+//need to make a function to reorganize arrays based on their dates
+// might need to refactor task organizing function
 const organizeArrayOnload = (() => {
     window.onload = () => {
-        console.log(dailyArray);
+
     }
 })();
 
 function taskCheck() {
     if (submitTitle.value === '') {
         alert("Task must have a title");
-        
+        return;
     };
 
     if (modaldateinput.value === '') {
         alert('Please enter a due date for this task')
-                                   
+        return;
     };
 
     let date = format(parseISO(modaldateinput.value), 'MM/dd/yyyy');
@@ -58,11 +69,13 @@ function taskCheck() {
 
     if (isBefore(new Date(date), new Date(currentDate)) === true) {
         alert('This due date occurs before todays date');
-        
+        return;
     };
 }
 
 function organizeTaskArray(date, task) {
+    inboxArray.push(task);
+    storeTasks();
     if (isToday(parseISO(date)) === true) {
         dailyArray.push(task);
         console.log('daily', dailyArray);
@@ -82,8 +95,6 @@ function organizeTaskArray(date, task) {
         importantArray.push(task);
         console.log('important', importantArray);
     };
-
-    inboxArray.push(task);
 };
 
 export {

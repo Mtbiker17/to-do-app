@@ -15,10 +15,9 @@ import {
 } from './storageFunctions.js'
 
 function initializeHomepage() {
-    window.onload = () => {
-        retrieveTasks();
-        console.log(inboxArray);
-    };
+    window.localStorage;
+    retrieveTasks();
+    //retrieveTasks();
 };
 
 
@@ -62,7 +61,7 @@ const taskModalController = (() => {
         const task = new createTask(`${submitTitle.value}`, `${submitNotes.value}`,
             `${submitPriority.value}`, `${modaldateinput.value}`, inboxArray.length)
         organizeTaskArray(modaldateinput.value, task);
-        storeTasks();
+        
         clearInfo();
     });
 })();

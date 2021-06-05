@@ -1,25 +1,13 @@
-import {
-    inboxArray,
-    dailyArray,
-    weeklyArray,
-    monthlyArray,
-    importantArray,
-} from './taskFunctions.js'
+import { inboxArray } from './TaskFunctions.js';
 
 function storeTasks() {
-    localStorage.setItem('inboxArray', JSON.stringify(inboxArray));
-    localStorage.setItem('dailyArray', JSON.stringify(dailyArray));
-    localStorage.setItem('weeklyArray', JSON.stringify(weeklyArray));
-    localStorage.setItem('monthlyArray', JSON.stringify(monthlyArray));
-    localStorage.setItem('importantArray', JSON.stringify(importantArray));
+    inboxArray = localStorage.setItem('inboxArray', JSON.stringify(inboxArray));
+    return inboxArray;
 };
 
 function retrieveTasks() {
-    inboxArray = localStorage.getItem('inboxArray');
-    dailyArray = localStorage.getItem('dailyArray');
-    weeklyArray = localStorage.getItem('weeklyArray');
-    monthlyArray = localStorage.getItem('monthlyArray');
-    importantArray = localStorage.getItem('importantArray');
+    inboxArray = JSON.parse(localStorage.getItem('inboxArray'));
+    console.log(inboxArray)
 };
 
 export {
