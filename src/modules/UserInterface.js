@@ -58,6 +58,7 @@ const taskModalController = (() => {
 
     submitTask.addEventListener('click', () => {
         taskCheck();
+        retrieveTasks();
         const task = new createTask(`${submitTitle.value}`, `${submitNotes.value}`,
             `${submitPriority.value}`, `${modaldateinput.value}`, inboxArray.length)
         organizeTaskArray(modaldateinput.value, task);
