@@ -1,5 +1,5 @@
-import { isToday, parseISO, isThisWeek, isThisMonth, format } from 'date-fns';
-let taskArray = [];
+import { isToday, isBefore, parseISO, isThisWeek, isThisMonth, format } from 'date-fns';
+let inboxArray = [];
 let dailyArray = [];
 let weeklyArray = [];
 let monthlyArray = [];
@@ -36,6 +36,32 @@ class createTask {
     };
 };
 
+const organizeArrayOnload = (() => {
+    window.onload = () => {
+        console.log(dailyArray);
+    }
+})();
+
+function taskCheck() {
+    if (submitTitle.value === '') {
+        alert("Task must have a title");
+        
+    };
+
+    if (modaldateinput.value === '') {
+        alert('Please enter a due date for this task')
+                                   
+    };
+
+    let date = format(parseISO(modaldateinput.value), 'MM/dd/yyyy');
+    let currentDate = format(new Date(), 'MM/dd/yyyy');
+
+    if (isBefore(new Date(date), new Date(currentDate)) === true) {
+        alert('This due date occurs before todays date');
+        
+    };
+}
+
 function organizeTaskArray(date, task) {
     if (isToday(parseISO(date)) === true) {
         dailyArray.push(task);
@@ -57,17 +83,18 @@ function organizeTaskArray(date, task) {
         console.log('important', importantArray);
     };
 
-    taskArray.push(task);
+    inboxArray.push(task);
 };
 
 export {
     createTask,
     organizeTaskArray,
-    taskArray,
+    inboxArray,
     dailyArray,
     weeklyArray,
     monthlyArray,
-    importantArray
+    importantArray,
+    taskCheck
 };
 
 //datefns useful functions 

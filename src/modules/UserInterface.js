@@ -1,17 +1,26 @@
 import {
     createTask,
     organizeTaskArray,
-    taskArray,
+    taskCheck,
+    inboxArray,
     dailyArray,
     weeklyArray,
     monthlyArray,
-    importantArray
+    importantArray,
 } from './TaskFunctions.js';
-import { isBefore, parseISO, format } from 'date-fns';
+
+import {
+    storeTasks,
+    retrieveTasks
+} from './storageFunctions.js'
 
 function initializeHomepage() {
+    window.onload = () => {
+        retrieveTasks();
+        console.log(inboxArray);
+    };
+};
 
-}
 
 const navbarButtonController = (() => {
     inbox.addEventListener('click', () => {
@@ -31,7 +40,7 @@ const navbarButtonController = (() => {
     });
 })();
 
-const taskController = (() => {
+const taskModalController = (() => {
     addTask.addEventListener('click', () => {
         taskModal.style.display = 'flex';
     });
@@ -49,30 +58,16 @@ const taskController = (() => {
     };
 
     submitTask.addEventListener('click', () => {
-        if (submitTitle.value === '') {
-            alert("Task must have a title");
-            return;
-        };
-
-        if (modaldateinput.value === '') {
-            alert('Please enter a due date for this task')
-            return;
-        };
-
-        let date = format(parseISO(modaldateinput.value), 'MM/dd/yyyy');
-        let currentDate = format(new Date(), 'MM/dd/yyyy');
-
-        if (isBefore(new Date(date), new Date(currentDate)) === true) {
-            alert('This due date occurs before todays date');
-            return;
-        };
-
+        taskCheck();
         const task = new createTask(`${submitTitle.value}`, `${submitNotes.value}`,
-            `${submitPriority.value}`, `${modaldateinput.value}`, taskArray.length)
+            `${submitPriority.value}`, `${modaldateinput.value}`, inboxArray.length)
         organizeTaskArray(modaldateinput.value, task);
+        storeTasks();
         clearInfo();
     });
 })();
+
+
 
 
 function showTaskUI(title, notes, date, id) {
