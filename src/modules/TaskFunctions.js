@@ -22,7 +22,7 @@ class createTask {
         this.priority = priority;
         this.notes = notes;
         this.taskID = taskID
-    }
+    };
 
     getTitle() {
         return this.title;
@@ -38,7 +38,7 @@ class createTask {
 
     addNotes() {
         return this.notes;
-    };;
+    };
 
     createTaskID() {
         return this.id;
@@ -71,11 +71,10 @@ function taskCheck() {
         alert('This due date occurs before todays date');
         return;
     };
-}
+};
 
 function organizeTaskArray(date, task) {
     inboxArray.push(task);
-    storeTasks();
     if (isToday(parseISO(date)) === true) {
         dailyArray.push(task);
         console.log('daily', dailyArray);
@@ -95,6 +94,7 @@ function organizeTaskArray(date, task) {
         importantArray.push(task);
         console.log('important', importantArray);
     };
+    storeTasks();
 };
 
 export {

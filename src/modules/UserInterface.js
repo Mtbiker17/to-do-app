@@ -15,11 +15,8 @@ import {
 } from './storageFunctions.js'
 
 function initializeHomepage() {
-    window.localStorage;
     retrieveTasks();
-    //retrieveTasks();
 };
-
 
 const navbarButtonController = (() => {
     inbox.addEventListener('click', () => {
@@ -51,7 +48,6 @@ const taskModalController = (() => {
     const clearInfo = () => {
         submitTitle.value = '';
         submitNotes.value = '';
-        submitPriority.value = modaldateinput.value;
         modaldateinput.value = '';
         taskModal.style.display = 'none';
     };
@@ -60,7 +56,7 @@ const taskModalController = (() => {
         taskCheck();
         retrieveTasks();
         const task = new createTask(`${submitTitle.value}`, `${submitNotes.value}`,
-            `${submitPriority.value}`, `${modaldateinput.value}`, inboxArray.length)
+            `${submitPriority.value}`, `${modaldateinput.value}`, `${inboxArray.length}`)
         organizeTaskArray(modaldateinput.value, task);
         
         clearInfo();

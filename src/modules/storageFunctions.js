@@ -6,9 +6,12 @@ function storeTasks() {
 };
 
 function retrieveTasks() {
+    if (inboxArray === null) {
+        inboxArray = [];
+        return;
+    }
     inboxArray = JSON.parse(localStorage.getItem('inboxArray'));
     console.log(inboxArray)
-    
 };
 
 export {
