@@ -53,18 +53,16 @@ const taskModalController = (() => {
     };
 
     submitTask.addEventListener('click', () => {
-        taskCheck();
+        taskCheck(submitTitle.value, modaldateinput.value);
         retrieveTasks();
         const task = new createTask(`${submitTitle.value}`, `${submitNotes.value}`,
             `${submitPriority.value}`, `${modaldateinput.value}`, `${inboxArray.length}`)
-        organizeTaskArray(modaldateinput.value, task);
-        
+        organizeTaskArray(task);
+        //need to refactor to not allow push to inbox array when taskcheck is not valid.
+        storeTasks();
         clearInfo();
     });
 })();
-
-
-
 
 function showTaskUI(title, notes, date, id) {
     let task = document.createElement('div');

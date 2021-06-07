@@ -21,7 +21,7 @@ class createTask {
         this.dueDate = dueDate;
         this.priority = priority;
         this.notes = notes;
-        this.taskID = taskID
+        this.taskID = taskID;
     };
 
     getTitle() {
@@ -53,18 +53,18 @@ const organizeArrayOnload = (() => {
     }
 })();
 
-function taskCheck() {
-    if (submitTitle.value === '') {
+function taskCheck(title, dueDate) {
+    if (title === '') {
         alert("Task must have a title");
         return;
     };
 
-    if (modaldateinput.value === '') {
+    if (dueDate === '') {
         alert('Please enter a due date for this task')
         return;
     };
 
-    let date = format(parseISO(modaldateinput.value), 'MM/dd/yyyy');
+    let date = format(parseISO(dueDate), 'MM/dd/yyyy');
     let currentDate = format(new Date(), 'MM/dd/yyyy');
 
     if (isBefore(new Date(date), new Date(currentDate)) === true) {
@@ -73,19 +73,21 @@ function taskCheck() {
     };
 };
 
-function organizeTaskArray(date, task) {
-    inboxArray.push(task);
-    if (isToday(parseISO(date)) === true) {
+function organizeTaskArray(task) {
+    if (task.title === '') {
+        return;
+    };
+    if (isToday(parseISO(task.dueDate)) === true) {
         dailyArray.push(task);
         console.log('daily', dailyArray);
     };
 
-    if (isThisWeek(parseISO(date)) === true) {
+    if (isThisWeek(parseISO(task.dueDate)) === true) {
         weeklyArray.push(task);
         console.log('weekly', weeklyArray);
     };
 
-    if (isThisMonth(parseISO(date)) === true) {
+    if (isThisMonth(parseISO(task.dueDate)) === true) {
         monthlyArray.push(task);
         console.log('monthly', monthlyArray);
     };
@@ -94,7 +96,6 @@ function organizeTaskArray(date, task) {
         importantArray.push(task);
         console.log('important', importantArray);
     };
-    storeTasks();
 };
 
 export {
