@@ -1,6 +1,7 @@
 import {
     createTask,
     organizeTaskArray,
+    valid,
     taskCheck,
     inboxArray,
     dailyArray,
@@ -55,9 +56,13 @@ const taskModalController = (() => {
     submitTask.addEventListener('click', () => {
         taskCheck(submitTitle.value, modaldateinput.value);
         retrieveTasks();
+        if (valid === false) {
+            return;
+        }
         const task = new createTask(`${submitTitle.value}`, `${submitNotes.value}`,
             `${submitPriority.value}`, `${modaldateinput.value}`, `${inboxArray.length}`)
         organizeTaskArray(task);
+        inboxArray.push(task);
         //need to refactor to not allow push to inbox array when taskcheck is not valid.
         storeTasks();
         clearInfo();
@@ -102,4 +107,3 @@ function showTaskUI(title, notes, date, id) {
 export {
     initializeHomepage,
 }
-

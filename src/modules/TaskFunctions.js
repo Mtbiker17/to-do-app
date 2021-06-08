@@ -14,6 +14,7 @@ let dailyArray = [];
 let weeklyArray = [];
 let monthlyArray = [];
 let importantArray = [];
+let valid = true;
 
 class createTask {
     constructor(title, notes, priority, dueDate, taskID) {
@@ -56,12 +57,12 @@ const organizeArrayOnload = (() => {
 function taskCheck(title, dueDate) {
     if (title === '') {
         alert("Task must have a title");
-        return;
+        valid = false;
     };
 
     if (dueDate === '') {
         alert('Please enter a due date for this task')
-        return;
+        valid = false;
     };
 
     let date = format(parseISO(dueDate), 'MM/dd/yyyy');
@@ -69,8 +70,9 @@ function taskCheck(title, dueDate) {
 
     if (isBefore(new Date(date), new Date(currentDate)) === true) {
         alert('This due date occurs before todays date');
-        return;
+        valid = false;
     };
+    return valid
 };
 
 function organizeTaskArray(task) {
@@ -101,6 +103,7 @@ function organizeTaskArray(task) {
 export {
     createTask,
     organizeTaskArray,
+    valid,
     inboxArray,
     dailyArray,
     weeklyArray,
@@ -126,7 +129,6 @@ export {
 //compareAsc - Compare the two dates and return 1 if the first date is after the second, -1 if the first date is before the second or 0 if dates are equal.
 
 /*javascript date functions
-
 getFullYear()	Get the year as a four digit number (yyyy)
 getMonth()	Get the month as a number (0-11)
 getDate()	Get the day as a number (1-31)
