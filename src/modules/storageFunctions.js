@@ -6,11 +6,10 @@ function storeTasks() {
 };
 
 function retrieveTasks() {
+    inboxArray = JSON.parse(localStorage.getItem('inboxArray'));
     if (inboxArray === null) {
         inboxArray = [];
-        return;
     }
-    inboxArray = JSON.parse(localStorage.getItem('inboxArray'));
     console.log(inboxArray)
 };
 

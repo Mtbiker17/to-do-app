@@ -46,14 +46,6 @@ class createTask {
     };
 };
 
-//need to make a function to reorganize arrays based on their dates
-// might need to refactor task organizing function
-const organizeArrayOnload = (() => {
-    window.onload = () => {
-
-    }
-})();
-
 function taskCheck(title, dueDate) {
     if (title === '') {
         alert("Task must have a title");
@@ -81,22 +73,18 @@ function organizeTaskArray(task) {
     };
     if (isToday(parseISO(task.dueDate)) === true) {
         dailyArray.push(task);
-        console.log('daily', dailyArray);
     };
 
     if (isThisWeek(parseISO(task.dueDate)) === true) {
         weeklyArray.push(task);
-        console.log('weekly', weeklyArray);
     };
 
     if (isThisMonth(parseISO(task.dueDate)) === true) {
         monthlyArray.push(task);
-        console.log('monthly', monthlyArray);
     };
 
     if (task.priority === 'Important') {
         importantArray.push(task);
-        console.log('important', importantArray);
     };
 };
 
