@@ -159,8 +159,7 @@ body {
     height: fit-content;
     font-family: 'PT Sans', sans-serif;
     max-width: 1100px;
-    border: solid #6a6e77;
-    border-width: thin;
+    
     border-radius: 20px;
 }
 
@@ -263,7 +262,7 @@ body {
 }
 
 .mainNavItems {
-    width: 230px;
+    width: 80%;
     border-radius: 5px;
     padding: 5px;
 }
