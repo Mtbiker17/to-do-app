@@ -24,7 +24,7 @@ function initializeHomepage() {
     inboxArray.forEach(savedTask => {
         organizeTaskArray(savedTask);
     })
-    displayFunctions.iterateTaskDisplay(inboxArray)
+    displayFunctions.iterateTaskDisplay(inboxArray);
 };
 
 const navbarButtonController = (() => {
@@ -108,13 +108,35 @@ const taskModalController = (() => {
         organizeTaskArray(task);
         storeTasks();
         clearInfo();
+        console.log(currentTitle.textContent)
+        displayFunctions.displayNewlyCreatedTask(currentTitle.textContent)
     });
 })();
 
 const displayFunctions = (() => {
+
     const removeChildren = () => {
         while (taskContainer.lastElementChild) {
             taskContainer.removeChild(taskContainer.lastElementChild);
+        }
+    };
+
+    const displayNewlyCreatedTask = (nav) => {
+        if (nav === 'Inbox') {
+            removeChildren();
+            iterateTaskDisplay(inboxArray);
+        } else if (nav === 'Today') {
+            removeChildren();
+            iterateTaskDisplay(dailyArray);
+        } else if (nav === 'Weekly') {
+            removeChildren();
+            iterateTaskDisplay(weeklyArray);
+        } else if (nav === 'Monthly') {
+            removeChildren();
+            iterateTaskDisplay(monthlyArray);
+        } else if (nav === 'Important') {
+            removeChildren();
+            iterateTaskDisplay(importantArray);
         }
     };
 
@@ -122,6 +144,9 @@ const displayFunctions = (() => {
         let task = document.createElement('div');
         task.classList.add('task');
         task.setAttribute('id', `${id}`);
+        task.addEventListener('click', () => {
+            console.log(id);
+        });
 
         let taskTitle = document.createElement('div');
         taskTitle.setAttribute('id', 'taskTitle');
@@ -153,12 +178,17 @@ const displayFunctions = (() => {
     };
 
     const iterateTaskDisplay = (arr) => {
-        arr.forEach(element=> {
-            showTaskUI(element.title, element.notes, element.dueDate, element.id);
+        arr.forEach(element => {
+            showTaskUI(element.title, element.notes, element.dueDate, element.taskID);
         });
     };
 
-    return { removeChildren, showTaskUI, iterateTaskDisplay }
+    return {
+        removeChildren,
+        showTaskUI,
+        iterateTaskDisplay,
+        displayNewlyCreatedTask
+    }
 })();
 
 export {

@@ -44,9 +44,6 @@ class createTask {
 };
 
 function organizeTaskArray(task) {
-    if (task.title === '') {
-        return;
-    };
     if (isToday(parseISO(task.dueDate)) === true) {
         dailyArray.push(task);
     };
