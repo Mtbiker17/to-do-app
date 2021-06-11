@@ -1,8 +1,6 @@
 import {
     createTask,
     organizeTaskArray,
-    valid,
-    taskCheck,
     inboxArray,
     dailyArray,
     weeklyArray,
@@ -15,48 +13,56 @@ import {
     retrieveTasks
 } from './storageFunctions.js'
 
+import {
+    format,
+    parseISO,
+    isBefore
+} from 'date-fns';
+
 function initializeHomepage() {
     retrieveTasks();
     inboxArray.forEach(savedTask => {
         organizeTaskArray(savedTask);
     })
+    displayFunctions.iterateTaskDisplay(inboxArray)
 };
 
 const navbarButtonController = (() => {
-    let arr;
+    let array
     inbox.addEventListener('click', () => {
         currentTitle.textContent = 'Inbox'
-        arr = inboxArray;
+        retrieveTasks();
+        array = inboxArray;
         displayFunctions.removeChildren();
-        displayFunctions.iterateTaskDisplay(arr);
+        displayFunctions.iterateTaskDisplay(array);
     });
 
     today.addEventListener('click', () => {
         currentTitle.textContent = 'Today'
-        arr = dailyArray;
+        array = dailyArray;
         displayFunctions.removeChildren();
-        displayFunctions.iterateTaskDisplay(arr);
+        displayFunctions.iterateTaskDisplay(array);
     });
 
     week.addEventListener('click', () => {
         currentTitle.textContent = 'Weekly'
-        arr = weeklyArray;
+        array = weeklyArray;
         displayFunctions.removeChildren();
-        displayFunctions.iterateTaskDisplay(arr);
+        displayFunctions.iterateTaskDisplay(array);
     });
 
     month.addEventListener('click', () => {
         currentTitle.textContent = 'Monthly'
-        arr = monthlyArray;
+        array = monthlyArray;
         displayFunctions.removeChildren();
-        displayFunctions.iterateTaskDisplay(arr);
+        displayFunctions.iterateTaskDisplay(array);
     });
 
     important.addEventListener('click', () => {
         currentTitle.textContent = 'Important'
-        arr = importantArray;
+        array = importantArray;
         displayFunctions.removeChildren();
-        displayFunctions.iterateTaskDisplay(arr);
+        displayFunctions.iterateTaskDisplay(array);
     });
 })();
 
@@ -77,15 +83,29 @@ const taskModalController = (() => {
     };
 
     submitTask.addEventListener('click', () => {
-        taskCheck(submitTitle.value, modaldateinput.value);
-        retrieveTasks();
-        if (valid === false) {
+        if (submitTitle.value === '') {
+            alert("Task must have a title");
             return;
         };
+
+        if (modaldateinput.value === '') {
+            alert('Please enter a due date for this task')
+            return;
+        };
+
+        let date = format(parseISO(modaldateinput.value), 'MM/dd/yyyy');
+        let currentDate = format(new Date(), 'MM/dd/yyyy');
+
+        if (isBefore(new Date(date), new Date(currentDate)) === true) {
+            alert('This due date occurs before todays date');
+            return;
+        };
+
+        retrieveTasks();
         const task = new createTask(`${submitTitle.value}`, `${submitNotes.value}`,
-            `${submitPriority.value}`, `${modaldateinput.value}`, `${inboxArray.length}`)
-        organizeTaskArray(task);
+            `${submitPriority.value}`, `${modaldateinput.value}`, `${inboxArray.length}`);
         inboxArray.push(task);
+        organizeTaskArray(task);
         storeTasks();
         clearInfo();
     });
@@ -133,8 +153,8 @@ const displayFunctions = (() => {
     };
 
     const iterateTaskDisplay = (arr) => {
-        arr.forEach(arr => {
-            showTaskUI(arr.title, arr.notes, arr.dueDate, arr.id);
+        arr.forEach(element=> {
+            showTaskUI(element.title, element.notes, element.dueDate, element.id);
         });
     };
 

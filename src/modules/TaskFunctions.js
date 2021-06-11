@@ -1,10 +1,8 @@
 import {
     isToday,
-    isBefore,
-    parseISO,
     isThisWeek,
     isThisMonth,
-    format
+    parseISO,
 } from 'date-fns';
 
 import { storeTasks } from './storageFunctions.js';
@@ -14,7 +12,6 @@ let dailyArray = [];
 let weeklyArray = [];
 let monthlyArray = [];
 let importantArray = [];
-let valid = true;
 
 class createTask {
     constructor(title, notes, priority, dueDate, taskID) {
@@ -46,27 +43,6 @@ class createTask {
     };
 };
 
-function taskCheck(title, dueDate) {
-    if (title === '') {
-        alert("Task must have a title");
-        valid = false;
-    };
-
-    if (dueDate === '') {
-        alert('Please enter a due date for this task')
-        valid = false;
-    };
-
-    let date = format(parseISO(dueDate), 'MM/dd/yyyy');
-    let currentDate = format(new Date(), 'MM/dd/yyyy');
-
-    if (isBefore(new Date(date), new Date(currentDate)) === true) {
-        alert('This due date occurs before todays date');
-        valid = false;
-    };
-    return valid
-};
-
 function organizeTaskArray(task) {
     if (task.title === '') {
         return;
@@ -91,13 +67,11 @@ function organizeTaskArray(task) {
 export {
     createTask,
     organizeTaskArray,
-    valid,
     inboxArray,
     dailyArray,
     weeklyArray,
     monthlyArray,
     importantArray,
-    taskCheck
 };
 
 //datefns useful functions 
