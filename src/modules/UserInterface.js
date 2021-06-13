@@ -28,42 +28,64 @@ function initializeHomepage() {
 };
 
 const navbarButtonController = (() => {
-    let array
-    inbox.addEventListener('click', () => {
+    let array;
+    const showInbox = () => {
         currentTitle.textContent = 'Inbox'
         retrieveTasks();
         array = inboxArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
-    });
+    };
 
-    today.addEventListener('click', () => {
+    const showDaily = () => {
         currentTitle.textContent = 'Today'
         array = dailyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
-    });
-
-    week.addEventListener('click', () => {
+    };
+    
+    const showWeekly = () => {
         currentTitle.textContent = 'Weekly'
         array = weeklyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
-    });
-
-    month.addEventListener('click', () => {
+    };
+    
+    const showMonthly = () => {
         currentTitle.textContent = 'Monthly'
         array = monthlyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
-    });
-
-    important.addEventListener('click', () => {
+    };
+    
+    const showImportant = () => {
         currentTitle.textContent = 'Important'
         array = importantArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
+    };
+    
+    inbox.addEventListener('click', () => {
+        showInbox();
     });
+
+    today.addEventListener('click', () => {
+        showDaily();
+    });
+
+    week.addEventListener('click', () => {
+        showWeekly();
+    });
+
+    month.addEventListener('click', () => {
+        showMonthly();
+    });
+
+    important.addEventListener('click', () => {
+        showImportant();
+    });
+    
+    return { showInbox, showDaily, showWeekly, showMonthly, showImportant };
 })();
 
 const taskModalController = (() => {
@@ -108,8 +130,7 @@ const taskModalController = (() => {
         organizeTaskArray(task);
         storeTasks();
         clearInfo();
-        console.log(currentTitle.textContent)
-        displayFunctions.displayNewlyCreatedTask(currentTitle.textContent)
+        displayFunctions.displayNewlyCreatedTask(currentTitle.textContent);
     });
 })();
 
@@ -123,20 +144,15 @@ const displayFunctions = (() => {
 
     const displayNewlyCreatedTask = (nav) => {
         if (nav === 'Inbox') {
-            removeChildren();
-            iterateTaskDisplay(inboxArray);
+            navbarButtonController.showInbox();
         } else if (nav === 'Today') {
-            removeChildren();
-            iterateTaskDisplay(dailyArray);
+            navbarButtonController.showDaily();
         } else if (nav === 'Weekly') {
-            removeChildren();
-            iterateTaskDisplay(weeklyArray);
+            navbarButtonController.showWeekly();
         } else if (nav === 'Monthly') {
-            removeChildren();
-            iterateTaskDisplay(monthlyArray);
+            navbarButtonController.showMonthly();
         } else if (nav === 'Important') {
-            removeChildren();
-            iterateTaskDisplay(importantArray);
+            navbarButtonController.showImportant();
         }
     };
 
