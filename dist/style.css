@@ -159,13 +159,16 @@ body {
     height: fit-content;
     font-family: 'PT Sans', sans-serif;
     max-width: 1100px;
-    
     border-radius: 20px;
 }
 
 .task:hover {
     background-color: #6a6e77;
     border-radius: 20px;
+}
+
+#checkbox {
+    margin: 10px;
 }
 
 #taskTitle {
@@ -176,11 +179,6 @@ body {
     word-wrap: break-word;
     hyphens: auto;
     margin: 20px 120px 20px 20px;
-}
-
-#taskTitle::before {
-    content: url('./images/circle.svg');
-    padding-right: 10px;
 }
 
 #dueDate {

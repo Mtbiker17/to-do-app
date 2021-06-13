@@ -160,9 +160,14 @@ const displayFunctions = (() => {
         let task = document.createElement('div');
         task.classList.add('task');
         task.setAttribute('id', `${id}`);
-        task.addEventListener('click', () => {
+       /* task.addEventListener('click', () => {
             console.log(id);
-        });
+        });*/
+
+        let checkbox = document.createElement('input')
+        checkbox.setAttribute('id', 'checkbox');
+        checkbox.setAttribute('type', 'checkbox');
+        checkbox.setAttribute('value', `${id}`);
 
         let taskTitle = document.createElement('div');
         taskTitle.setAttribute('id', 'taskTitle');
@@ -185,6 +190,7 @@ const displayFunctions = (() => {
         dateInput.setAttribute('id', 'date');
         dateInput.value = `${date}`;
 
+        task.appendChild(checkbox);
         task.appendChild(taskTitle);
         task.appendChild(taskNotes);
         taskNotes.appendChild(notesContent);
