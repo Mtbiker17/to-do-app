@@ -164,10 +164,14 @@ const displayFunctions = (() => {
             console.log(id);
         });*/
 
-        let checkbox = document.createElement('input')
-        checkbox.setAttribute('id', 'checkbox');
-        checkbox.setAttribute('type', 'checkbox');
-        checkbox.setAttribute('value', `${id}`);
+        let checkbox = document.createElement('label')
+        checkbox.classList.add('checkbox-label');
+        let input = document.createElement('input');
+        input.setAttribute('type', 'checkbox');
+        checkbox.appendChild(input);
+        let span = document.createElement('span');
+        span.classList.add('checkbox-custom');
+        checkbox.appendChild(span);
 
         let taskTitle = document.createElement('div');
         taskTitle.setAttribute('id', 'taskTitle');
