@@ -43,28 +43,28 @@ const navbarButtonController = (() => {
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
     };
-    
+
     const showWeekly = () => {
         currentTitle.textContent = 'Weekly'
         array = weeklyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
     };
-    
+
     const showMonthly = () => {
         currentTitle.textContent = 'Monthly'
         array = monthlyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
     };
-    
+
     const showImportant = () => {
         currentTitle.textContent = 'Important'
         array = importantArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
     };
-    
+
     inbox.addEventListener('click', () => {
         showInbox();
     });
@@ -84,7 +84,7 @@ const navbarButtonController = (() => {
     important.addEventListener('click', () => {
         showImportant();
     });
-    
+
     return { showInbox, showDaily, showWeekly, showMonthly, showImportant };
 })();
 
@@ -160,9 +160,6 @@ const displayFunctions = (() => {
         let task = document.createElement('div');
         task.classList.add('task');
         task.setAttribute('id', `${id}`);
-       /* task.addEventListener('click', () => {
-            console.log(id);
-        });*/
 
         let checkbox = document.createElement('label')
         checkbox.classList.add('checkbox-label');
@@ -172,6 +169,9 @@ const displayFunctions = (() => {
         let span = document.createElement('span');
         span.classList.add('checkbox-custom');
         checkbox.appendChild(span);
+        input.addEventListener('click', () => {
+            console.log(input.checked);
+        });
 
         let taskTitle = document.createElement('div');
         taskTitle.setAttribute('id', 'taskTitle');
@@ -201,12 +201,15 @@ const displayFunctions = (() => {
         task.appendChild(dueDate);
         dueDate.appendChild(dateInput);
         taskContainer.appendChild(task);
+
+        return task;
     };
 
     const iterateTaskDisplay = (arr) => {
         arr.forEach(element => {
             showTaskUI(element.title, element.notes, element.dueDate, element.taskID);
         });
+       
     };
 
     return {
