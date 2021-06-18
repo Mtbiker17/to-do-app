@@ -14,12 +14,13 @@ let monthlyArray = [];
 let importantArray = [];
 
 class createTask {
-    constructor(title, notes, priority, dueDate, taskID) {
+    constructor(title, notes, priority, dueDate, taskID, completed) {
         this.title = title;
         this.dueDate = dueDate;
         this.priority = priority;
         this.notes = notes;
         this.taskID = taskID;
+        this.completed = completed
     };
 
     getTitle() {
@@ -40,6 +41,10 @@ class createTask {
 
     createTaskID() {
         return this.id;
+    };
+
+    checkCompleted() {
+        return this.completed;
     };
 };
 

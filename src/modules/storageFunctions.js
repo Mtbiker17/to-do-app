@@ -10,7 +10,7 @@ function retrieveTasks() {
     if (inboxArray === null) {
         inboxArray = [];
     }
-    console.log(inboxArray)
+    return inboxArray;
 };
 
 export {

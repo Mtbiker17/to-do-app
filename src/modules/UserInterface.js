@@ -124,18 +124,18 @@ const taskModalController = (() => {
         };
 
         retrieveTasks();
-        const task = new createTask(`${submitTitle.value}`, `${submitNotes.value}`,
-            `${submitPriority.value}`, `${modaldateinput.value}`, `${inboxArray.length}`);
+        const task = new createTask(`${submitTitle.value}`, `${submitNotes.value}`, `${submitPriority.value}`, 
+        `${modaldateinput.value}`, `${inboxArray.length}`, false);
         inboxArray.push(task);
         organizeTaskArray(task);
         storeTasks();
         clearInfo();
         displayFunctions.displayNewlyCreatedTask(currentTitle.textContent);
     });
+    
 })();
 
 const displayFunctions = (() => {
-
     const removeChildren = () => {
         while (taskContainer.lastElementChild) {
             taskContainer.removeChild(taskContainer.lastElementChild);
@@ -156,7 +156,7 @@ const displayFunctions = (() => {
         }
     };
 
-    const showTaskUI = (title, notes, date, id) => {
+    const showTaskUI = (title, notes, date, id, checked) => {
         let task = document.createElement('div');
         task.classList.add('task');
         task.setAttribute('id', `${id}`);
@@ -170,7 +170,11 @@ const displayFunctions = (() => {
         span.classList.add('checkbox-custom');
         checkbox.appendChild(span);
         input.addEventListener('click', () => {
-            console.log(input.checked);
+            retrieveTasks()
+            if(input.checked === true){
+                inboxArray[id].completed = true;
+            } 
+            console.log(inboxArray[id])
         });
 
         let taskTitle = document.createElement('div');
@@ -201,15 +205,12 @@ const displayFunctions = (() => {
         task.appendChild(dueDate);
         dueDate.appendChild(dateInput);
         taskContainer.appendChild(task);
-
-        return task;
     };
 
     const iterateTaskDisplay = (arr) => {
         arr.forEach(element => {
-            showTaskUI(element.title, element.notes, element.dueDate, element.taskID);
+            showTaskUI(element.title, element.notes, element.dueDate, element.taskID, element.completed);
         });
-       
     };
 
     return {
@@ -223,3 +224,15 @@ const displayFunctions = (() => {
 export {
     initializeHomepage,
 };
+
+/*
+//plug this somewhere to filter out inbox array and display (maybe use .filter?)
+arr.forEach(task => {
+            if(task.completed === true){
+                let removeID = task.taskID
+                let arr = arr.splice(arr[removeID], 1);
+                storeTasks();
+            }
+        });
+
+*/
