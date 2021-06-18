@@ -1,6 +1,7 @@
 import {
     createTask,
     organizeTaskArray,
+    removeCompletedTasks,
     inboxArray,
     dailyArray,
     weeklyArray,
@@ -169,13 +170,7 @@ const displayFunctions = (() => {
         let span = document.createElement('span');
         span.classList.add('checkbox-custom');
         checkbox.appendChild(span);
-        input.addEventListener('click', () => {
-            retrieveTasks()
-            if(input.checked === true){
-                inboxArray[id].completed = true;
-            } 
-            console.log(inboxArray[id])
-        });
+        
 
         let taskTitle = document.createElement('div');
         taskTitle.setAttribute('id', 'taskTitle');
@@ -205,6 +200,17 @@ const displayFunctions = (() => {
         task.appendChild(dueDate);
         dueDate.appendChild(dateInput);
         taskContainer.appendChild(task);
+
+        input.addEventListener('click', () => {
+            retrieveTasks()
+            if(input.checked === true){
+                inboxArray[id].completed = true;
+                taskTitle.style.textDecoration = 'line-through';
+            } else if (input.checked === false){
+                taskTitle.style.textDecoration = 'none'
+            }
+            console.log(inboxArray[id])
+        });
     };
 
     const iterateTaskDisplay = (arr) => {
@@ -212,6 +218,19 @@ const displayFunctions = (() => {
             showTaskUI(element.title, element.notes, element.dueDate, element.taskID, element.completed);
         });
     };
+
+    /*
+    const removeTasks = (inboxArray) => {
+        remove.addEventListener('click', () => {
+            removeCompletedTasks();
+        })
+    };
+
+    remove.addEventListener('click', () => {
+        removeCompletedTasks(inboxArray)
+    });
+
+    */
 
     return {
         removeChildren,

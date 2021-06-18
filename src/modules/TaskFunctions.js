@@ -6,6 +6,7 @@ import {
 } from 'date-fns';
 
 import { storeTasks } from './storageFunctions.js';
+import { initializeHomepage } from './UserInterface.js';
 
 let inboxArray = [];
 let dailyArray = [];
@@ -66,9 +67,22 @@ function organizeTaskArray(task) {
     };
 };
 
+/*
+function removeCompletedTasks(array) {
+    array.forEach(task => {
+        if(task.completed === true) {
+            inboxArray.splice(task, 1);
+            storeTasks();
+        }
+    });
+    initializeHomepage();
+};
+*/
+
 export {
     createTask,
     organizeTaskArray,
+    removeCompletedTasks,
     inboxArray,
     dailyArray,
     weeklyArray,

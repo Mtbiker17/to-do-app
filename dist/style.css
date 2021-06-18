@@ -124,7 +124,7 @@ body {
     padding: 20px;
 }
 
-#addTask {
+.taskControl {
     font-size: 150%;
     justify-content: center;
     font-family: 'PT San', sans-serif;
@@ -134,13 +134,22 @@ body {
     padding: 5px;
 }
 
-#addTask::before {
-    content: url('./images/add.svg');
-    padding: 10px
+.taskControl:hover {
+    background-color: #6a6e77 ;
 }
 
-#addTask:hover {
-    background-color: #6a6e77 ;
+#remove::before {
+    content:url('./images/remove.svg');
+    padding: 10px;
+}
+
+#remove {
+    width: 340px;
+}
+
+#addTask::before {
+    content: url('./images/add.svg');
+    padding: 10px;
 }
 
 #taskContainer {
