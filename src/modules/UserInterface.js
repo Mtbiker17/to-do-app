@@ -6,6 +6,7 @@ import {
     weeklyArray,
     monthlyArray,
     importantArray,
+    updateTaskArrays,
 } from './TaskFunctions.js';
 
 import {
@@ -17,7 +18,6 @@ import {
     format,
     parseISO,
     isBefore,
-    intervalToDuration
 } from 'date-fns';
 
 function initializeHomepage() {
@@ -210,7 +210,7 @@ const displayFunctions = (() => {
         };
 
         task.addEventListener('click', () => {
-            console.log(inboxArray)
+            //console.log(inboxArray)
         });
 
         input.addEventListener('click', () => {
@@ -219,10 +219,12 @@ const displayFunctions = (() => {
                 inboxArray[id].completed = true;
                 taskTitle.style.textDecoration = 'line-through';
                 storeTasks(inboxArray)
+                updateTaskArrays(input.checked, id, inboxArray);
             } else if (input.checked === false) {
                 inboxArray[id].completed = false;
                 taskTitle.style.textDecoration = 'none'
                 storeTasks(inboxArray)
+                updateTaskArrays(input.checked, id, inboxArray);
             }
         });
     };
@@ -239,7 +241,6 @@ const displayFunctions = (() => {
             if (task.completed === true) {
                 inboxArray.splice(parseInt(task.taskID), 1);
                 storeTasks();
-
             }
         })
     });*/
