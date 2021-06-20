@@ -1,8 +1,8 @@
 import { inboxArray } from './TaskFunctions.js';
 
-function storeTasks() {
-    inboxArray = localStorage.setItem('inboxArray', JSON.stringify(inboxArray));
-    return inboxArray;
+function storeTasks(array) {
+    array = localStorage.setItem('inboxArray', JSON.stringify(inboxArray));
+    return array;
 };
 
 function retrieveTasks() {

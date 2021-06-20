@@ -82,7 +82,6 @@ function removeCompletedTasks(array) {
 export {
     createTask,
     organizeTaskArray,
-    removeCompletedTasks,
     inboxArray,
     dailyArray,
     weeklyArray,

@@ -1,7 +1,6 @@
 import {
     createTask,
     organizeTaskArray,
-    removeCompletedTasks,
     inboxArray,
     dailyArray,
     weeklyArray,
@@ -17,7 +16,8 @@ import {
 import {
     format,
     parseISO,
-    isBefore
+    isBefore,
+    intervalToDuration
 } from 'date-fns';
 
 function initializeHomepage() {
@@ -125,15 +125,15 @@ const taskModalController = (() => {
         };
 
         retrieveTasks();
-        const task = new createTask(`${submitTitle.value}`, `${submitNotes.value}`, `${submitPriority.value}`, 
-        `${modaldateinput.value}`, `${inboxArray.length}`, false);
+        const task = new createTask(`${submitTitle.value}`, `${submitNotes.value}`, `${submitPriority.value}`,
+            `${modaldateinput.value}`, `${inboxArray.length}`, false);
         inboxArray.push(task);
         organizeTaskArray(task);
         storeTasks();
         clearInfo();
-        displayFunctions.displayNewlyCreatedTask(currentTitle.textContent);
+        displayFunctions.refreshTasksUI(currentTitle.textContent);
     });
-    
+
 })();
 
 const displayFunctions = (() => {
@@ -143,7 +143,7 @@ const displayFunctions = (() => {
         }
     };
 
-    const displayNewlyCreatedTask = (nav) => {
+    const refreshTasksUI = (nav) => {
         if (nav === 'Inbox') {
             navbarButtonController.showInbox();
         } else if (nav === 'Today') {
@@ -170,7 +170,7 @@ const displayFunctions = (() => {
         let span = document.createElement('span');
         span.classList.add('checkbox-custom');
         checkbox.appendChild(span);
-        
+
 
         let taskTitle = document.createElement('div');
         taskTitle.setAttribute('id', 'taskTitle');
@@ -201,15 +201,29 @@ const displayFunctions = (() => {
         dueDate.appendChild(dateInput);
         taskContainer.appendChild(task);
 
+        if (checked === true) {
+            taskTitle.style.textDecoration = 'line-through'
+            input.checked = true
+        } else if (checked === false) {
+            input.checked = false;
+            taskTitle.style.textDecoration = 'none'
+        };
+
+        task.addEventListener('click', () => {
+            console.log(inboxArray)
+        });
+
         input.addEventListener('click', () => {
             retrieveTasks()
-            if(input.checked === true){
+            if (input.checked === true) {
                 inboxArray[id].completed = true;
                 taskTitle.style.textDecoration = 'line-through';
-            } else if (input.checked === false){
+                storeTasks(inboxArray)
+            } else if (input.checked === false) {
+                inboxArray[id].completed = false;
                 taskTitle.style.textDecoration = 'none'
+                storeTasks(inboxArray)
             }
-            console.log(inboxArray[id])
         });
     };
 
@@ -219,39 +233,25 @@ const displayFunctions = (() => {
         });
     };
 
-    /*
-    const removeTasks = (inboxArray) => {
-        remove.addEventListener('click', () => {
-            removeCompletedTasks();
+    /*remove.addEventListener('click', () => {
+        retrieveTasks()
+        inboxArray.forEach(task => {
+            if (task.completed === true) {
+                inboxArray.splice(parseInt(task.taskID), 1);
+                storeTasks();
+
+            }
         })
-    };
-
-    remove.addEventListener('click', () => {
-        removeCompletedTasks(inboxArray)
-    });
-
-    */
+    });*/
 
     return {
         removeChildren,
         showTaskUI,
         iterateTaskDisplay,
-        displayNewlyCreatedTask
+       refreshTasksUI 
     }
 })();
 
 export {
     initializeHomepage,
 };
-
-/*
-//plug this somewhere to filter out inbox array and display (maybe use .filter?)
-arr.forEach(task => {
-            if(task.completed === true){
-                let removeID = task.taskID
-                let arr = arr.splice(arr[removeID], 1);
-                storeTasks();
-            }
-        });
-
-*/
