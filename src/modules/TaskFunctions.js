@@ -4,10 +4,6 @@ import {
     isThisMonth,
     parseISO,
 } from 'date-fns';
-import { retrieveTasks } from './storageFunctions.js';
-
-import {
-} from './UserInterface.js';
 
 let inboxArray = [];
 let dailyArray = [];
@@ -69,7 +65,7 @@ function organizeTaskArray(task) {
     return {dailyArray, weeklyArray, monthlyArray, importantArray}
 };
 
-function updateTaskArrays(checked, id, inboxArray) {
+/*function updateTaskArrays(checked, id, inboxArray) {
     inboxArray.forEach(task => {
         if (isToday(parseISO(task.dueDate)) === true && checked === true) {
             dailyArray[id].completed = true
@@ -95,7 +91,7 @@ function updateTaskArrays(checked, id, inboxArray) {
             importantArray[id].completed = false;
         }
     });
-}
+}*/
 
 /*
 function removeCompletedTasks(array) {
@@ -112,7 +108,6 @@ function removeCompletedTasks(array) {
 export {
     createTask,
     organizeTaskArray,
-    updateTaskArrays,
     inboxArray,
     dailyArray,
     weeklyArray,

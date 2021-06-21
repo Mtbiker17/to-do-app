@@ -6,7 +6,7 @@ import {
     weeklyArray,
     monthlyArray,
     importantArray,
-    updateTaskArrays,
+    //updateTaskArrays,
 } from './TaskFunctions.js';
 
 import {
@@ -41,6 +41,11 @@ const navbarButtonController = (() => {
     const showDaily = () => {
         currentTitle.textContent = 'Today'
         array = dailyArray;
+        array.forEach(task => {
+            if(task.completed === true) {
+                array.splice((parseInt(task.ID)), 1);
+            }
+        })
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
     };
@@ -48,6 +53,11 @@ const navbarButtonController = (() => {
     const showWeekly = () => {
         currentTitle.textContent = 'Weekly'
         array = weeklyArray;
+        array.forEach(task => {
+            if(task.completed === true) {
+                array.splice((parseInt(task.ID)), 1);
+            }
+        })
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
     };
@@ -55,6 +65,11 @@ const navbarButtonController = (() => {
     const showMonthly = () => {
         currentTitle.textContent = 'Monthly'
         array = monthlyArray;
+        array.forEach(task => {
+            if(task.completed === true) {
+                ;
+            }
+        })
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
     };
@@ -62,6 +77,11 @@ const navbarButtonController = (() => {
     const showImportant = () => {
         currentTitle.textContent = 'Important'
         array = importantArray;
+        array.forEach(task => {
+            if(task.completed === true) {
+                array.splice((parseInt(task.ID)), 1);
+            }
+        })
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
     };
@@ -219,12 +239,15 @@ const displayFunctions = (() => {
                 inboxArray[id].completed = true;
                 taskTitle.style.textDecoration = 'line-through';
                 storeTasks(inboxArray)
-                updateTaskArrays(input.checked, id, inboxArray);
+                removeChildren()
+                //updateTaskArrays(input.checked, id, inboxArray);
             } else if (input.checked === false) {
                 inboxArray[id].completed = false;
                 taskTitle.style.textDecoration = 'none'
                 storeTasks(inboxArray)
-                updateTaskArrays(input.checked, id, inboxArray);
+                removeChildren()
+
+                //updateTaskArrays(input.checked, id, inboxArray);
             }
         });
     };
