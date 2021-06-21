@@ -65,7 +65,7 @@ function organizeTaskArray(task) {
     return {dailyArray, weeklyArray, monthlyArray, importantArray}
 };
 
-/*function updateTaskArrays(checked, id, inboxArray) {
+function updateTaskArrays(checked, id, inboxArray) {
     inboxArray.forEach(task => {
         if (isToday(parseISO(task.dueDate)) === true && checked === true) {
             dailyArray[id].completed = true
@@ -91,7 +91,8 @@ function organizeTaskArray(task) {
             importantArray[id].completed = false;
         }
     });
-}*/
+    return {dailyArray, weeklyArray, monthlyArray, importantArray}
+}
 
 /*
 function removeCompletedTasks(array) {
@@ -108,6 +109,7 @@ function removeCompletedTasks(array) {
 export {
     createTask,
     organizeTaskArray,
+    updateTaskArrays,
     inboxArray,
     dailyArray,
     weeklyArray,

@@ -6,7 +6,6 @@ import {
     weeklyArray,
     monthlyArray,
     importantArray,
-    //updateTaskArrays,
 } from './TaskFunctions.js';
 
 import {
@@ -41,11 +40,6 @@ const navbarButtonController = (() => {
     const showDaily = () => {
         currentTitle.textContent = 'Today'
         array = dailyArray;
-        array.forEach(task => {
-            if(task.completed === true) {
-                array.splice((parseInt(task.ID)), 1);
-            }
-        })
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
     };
@@ -53,11 +47,6 @@ const navbarButtonController = (() => {
     const showWeekly = () => {
         currentTitle.textContent = 'Weekly'
         array = weeklyArray;
-        array.forEach(task => {
-            if(task.completed === true) {
-                array.splice((parseInt(task.ID)), 1);
-            }
-        })
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
     };
@@ -65,11 +54,6 @@ const navbarButtonController = (() => {
     const showMonthly = () => {
         currentTitle.textContent = 'Monthly'
         array = monthlyArray;
-        array.forEach(task => {
-            if(task.completed === true) {
-                ;
-            }
-        })
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
     };
@@ -77,11 +61,6 @@ const navbarButtonController = (() => {
     const showImportant = () => {
         currentTitle.textContent = 'Important'
         array = importantArray;
-        array.forEach(task => {
-            if(task.completed === true) {
-                array.splice((parseInt(task.ID)), 1);
-            }
-        })
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
     };
@@ -229,24 +208,23 @@ const displayFunctions = (() => {
             taskTitle.style.textDecoration = 'none'
         };
 
-        task.addEventListener('click', () => {
-            //console.log(inboxArray)
-        });
-
         input.addEventListener('click', () => {
             retrieveTasks()
             if (input.checked === true) {
                 inboxArray[id].completed = true;
                 taskTitle.style.textDecoration = 'line-through';
                 storeTasks(inboxArray)
-                removeChildren()
+                inboxArray.forEach(savedTask => {
+                    organizeTaskArray(savedTask);
+                })
                 //updateTaskArrays(input.checked, id, inboxArray);
             } else if (input.checked === false) {
                 inboxArray[id].completed = false;
                 taskTitle.style.textDecoration = 'none'
                 storeTasks(inboxArray)
-                removeChildren()
-
+                inboxArray.forEach(savedTask => {
+                    organizeTaskArray(savedTask);
+                })
                 //updateTaskArrays(input.checked, id, inboxArray);
             }
         });
@@ -272,7 +250,7 @@ const displayFunctions = (() => {
         removeChildren,
         showTaskUI,
         iterateTaskDisplay,
-       refreshTasksUI 
+        refreshTasksUI
     }
 })();
 
