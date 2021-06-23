@@ -157,7 +157,8 @@ const displayFunctions = (() => {
         }
     };
 
-    const showTaskUI = (title, notes, date, id, checked) => {
+    const showTaskUI = (title, notes, date, id, checked, priority) => {
+        console.log(priority)
         let task = document.createElement('div');
         task.classList.add('task');
         task.setAttribute('id', `${id}`);
@@ -207,11 +208,15 @@ const displayFunctions = (() => {
         } else if (checked === false) {
             input.checked = false;
             taskTitle.style.textDecoration = 'none'
-        };
+        }
+
+        if(priority === 'Important') {
+            taskTitle.classList.add('pseudoImportant');
+        }
 
         task.addEventListener('click', () => {
 
-
+            
         })
 
         input.addEventListener('click', () => {
@@ -220,15 +225,13 @@ const displayFunctions = (() => {
                 inboxArray[id].completed = true;
                 taskTitle.style.textDecoration = 'line-through';
                 storeTasks(inboxArray)
-                retrieveTasks();
-                updateTaskArrays(true, inboxArray)
+                updateTaskArrays(true, inboxArray, id)
             } else if (input.checked === false) {
                 inboxArray[id].completed = false;
                 taskTitle.style.textDecoration = 'none';
                 console.log(input.checked)
                 storeTasks(inboxArray)
-                retrieveTasks();
-                updateTaskArrays(false, inboxArray)
+                updateTaskArrays(false, inboxArray, id)
             }
 
         });
@@ -236,7 +239,7 @@ const displayFunctions = (() => {
 
     const iterateTaskDisplay = (arr) => {
         arr.forEach(element => {
-            showTaskUI(element.title, element.notes, element.dueDate, element.taskID, element.completed);
+            showTaskUI(element.title, element.notes, element.dueDate, element.taskID, element.completed, element.priority);
         });
     };
 

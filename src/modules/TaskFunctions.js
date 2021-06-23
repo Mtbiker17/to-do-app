@@ -66,34 +66,38 @@ function organizeTaskArray(task) {
     return { dailyArray, weeklyArray, monthlyArray, importantArray }
 };
 
-function updateTaskArrays(checked, inboxArray) {
+function updateTaskArrays(checked, inboxArray, id) {
     inboxArray.forEach(task => {
-        if (isToday(parseISO(task.dueDate)) === true && checked === true) {
-            task.completed = true
+        
+        if (isToday(parseISO(task.dueDate)) === true && checked === true && task.taskID === id) {
+            dailyArray[task.taskID].completed = true
+            console.log(task.taskID)
+            
         }
-        if (isToday(parseISO(task.dueDate)) === true && checked === false) {
-            task.completed = false;
-        }
-
-        if (isThisWeek(parseISO(task.dueDate)) === true && checked === true) {
-            task.completed = true;
-        }
-        if (isThisWeek(parseISO(task.dueDate)) === true && checked === false) {
-            task.completed = false
+        if (isToday(parseISO(task.dueDate)) === true && checked === false && task.taskID === id) {
+            dailyArray[task.taskID].completed = false;
+            console.log(task.taskID)
         }
 
-        if (isThisMonth(parseISO(task.dueDate)) === true && checked == true) {
-            task.completed = true;
+        if (isThisWeek(parseISO(task.dueDate)) === true && checked === true && task.taskID === id) {
+            weeklyArray[task.taskID].completed = true;
         }
-        if (isThisMonth(parseISO(task.dueDate)) === true && checked === false) {
-            task.completed = false;
+        if (isThisWeek(parseISO(task.dueDate)) === true && checked === false && task.taskID === id) {
+            weeklyArray[task.taskID].completed = false
         }
 
-        if (task.priority === 'Important' && checked === true) {
-            task.completed = true;
+        if (isThisMonth(parseISO(task.dueDate)) === true && checked == true && task.taskID === id) {
+            monthlyArray[task.taskID].completed = true;
         }
-        if (task.priority === 'Important' && checked === false) {
-            task.completed = false;
+        if (isThisMonth(parseISO(task.dueDate)) === true && checked === false && task.taskID === id) {
+            monthlyArray[task.taskID].completed = false;
+        }
+
+        if (task.priority === 'Important' && checked === true && task.taskID === id) {
+            importantArray[task.taskID].completed = true;
+        }
+        if (task.priority === 'Important' && checked === false && task.taskID === id) {
+            importantArray[task.taskID].completed = false;
         }
     });
     return { dailyArray, weeklyArray, monthlyArray, importantArray }
