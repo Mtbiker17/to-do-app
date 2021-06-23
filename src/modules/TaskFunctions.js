@@ -47,6 +47,7 @@ class createTask {
 };
 
 function organizeTaskArray(task) {
+
     if (isToday(parseISO(task.dueDate)) === true) {
         dailyArray.push(task);
     };
@@ -62,36 +63,40 @@ function organizeTaskArray(task) {
     if (task.priority === 'Important') {
         importantArray.push(task);
     };
-    return {dailyArray, weeklyArray, monthlyArray, importantArray}
+    return { dailyArray, weeklyArray, monthlyArray, importantArray }
 };
 
-function updateTaskArrays(checked, id, inboxArray) {
+function updateTaskArrays(checked, inboxArray) {
     inboxArray.forEach(task => {
         if (isToday(parseISO(task.dueDate)) === true && checked === true) {
-            dailyArray[id].completed = true
-        } else if (isToday(parseISO(task.dueDate)) === true && checked === false){
-            dailyArray[id].completed = false;
+            task.completed = true
+        }
+        if (isToday(parseISO(task.dueDate)) === true && checked === false) {
+            task.completed = false;
         }
 
         if (isThisWeek(parseISO(task.dueDate)) === true && checked === true) {
-            weeklyArray[id].completed = true;
-        } else if (isThisWeek(parseISO(task.dueDate)) === true && checked === false){
-            weeklyArray[id].completed = false
+            task.completed = true;
+        }
+        if (isThisWeek(parseISO(task.dueDate)) === true && checked === false) {
+            task.completed = false
         }
 
         if (isThisMonth(parseISO(task.dueDate)) === true && checked == true) {
-            monthlyArray[id].completed = true;
-        } else if(isThisMonth(parseISO(task.dueDate)) === true && checked === false){
-            monthlyArray[id].completed = false;
+            task.completed = true;
+        }
+        if (isThisMonth(parseISO(task.dueDate)) === true && checked === false) {
+            task.completed = false;
         }
 
         if (task.priority === 'Important' && checked === true) {
-            importantArray[id].completed = true;
-        } else if(task.priority === 'Important' && checked === false){
-            importantArray[id].completed = false;
+            task.completed = true;
+        }
+        if (task.priority === 'Important' && checked === false) {
+            task.completed = false;
         }
     });
-    return {dailyArray, weeklyArray, monthlyArray, importantArray}
+    return { dailyArray, weeklyArray, monthlyArray, importantArray }
 }
 
 /*

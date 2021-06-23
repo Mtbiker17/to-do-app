@@ -6,6 +6,7 @@ import {
     weeklyArray,
     monthlyArray,
     importantArray,
+    updateTaskArrays
 } from './TaskFunctions.js';
 
 import {
@@ -208,25 +209,28 @@ const displayFunctions = (() => {
             taskTitle.style.textDecoration = 'none'
         };
 
+        task.addEventListener('click', () => {
+
+
+        })
+
         input.addEventListener('click', () => {
             retrieveTasks()
             if (input.checked === true) {
                 inboxArray[id].completed = true;
                 taskTitle.style.textDecoration = 'line-through';
                 storeTasks(inboxArray)
-                inboxArray.forEach(savedTask => {
-                    organizeTaskArray(savedTask);
-                })
-                //updateTaskArrays(input.checked, id, inboxArray);
+                retrieveTasks();
+                updateTaskArrays(true, inboxArray)
             } else if (input.checked === false) {
                 inboxArray[id].completed = false;
-                taskTitle.style.textDecoration = 'none'
+                taskTitle.style.textDecoration = 'none';
+                console.log(input.checked)
                 storeTasks(inboxArray)
-                inboxArray.forEach(savedTask => {
-                    organizeTaskArray(savedTask);
-                })
-                //updateTaskArrays(input.checked, id, inboxArray);
+                retrieveTasks();
+                updateTaskArrays(false, inboxArray)
             }
+
         });
     };
 
