@@ -18,7 +18,7 @@ class createTask {
         this.priority = priority;
         this.notes = notes;
         this.taskID = taskID;
-        this.completed = completed
+        this.completed = completed;
     };
 
     getTitle() {
@@ -63,27 +63,23 @@ function organizeTaskArray(task) {
     if (task.priority === 'Important') {
         importantArray.push(task);
     };
-    return { dailyArray, weeklyArray, monthlyArray, importantArray }
+    return { dailyArray, weeklyArray, monthlyArray, importantArray };
 };
 
 function updateTaskArrays(checked, inboxArray, id) {
     inboxArray.forEach(task => {
-        
         if (isToday(parseISO(task.dueDate)) === true && checked === true && task.taskID === id) {
-            dailyArray[task.taskID].completed = true
-            console.log(task.taskID)
-            
+            dailyArray[task.taskID].completed = true;
         }
         if (isToday(parseISO(task.dueDate)) === true && checked === false && task.taskID === id) {
             dailyArray[task.taskID].completed = false;
-            console.log(task.taskID)
         }
 
         if (isThisWeek(parseISO(task.dueDate)) === true && checked === true && task.taskID === id) {
             weeklyArray[task.taskID].completed = true;
         }
         if (isThisWeek(parseISO(task.dueDate)) === true && checked === false && task.taskID === id) {
-            weeklyArray[task.taskID].completed = false
+            weeklyArray[task.taskID].completed = false;
         }
 
         if (isThisMonth(parseISO(task.dueDate)) === true && checked == true && task.taskID === id) {
@@ -100,20 +96,8 @@ function updateTaskArrays(checked, inboxArray, id) {
             importantArray[task.taskID].completed = false;
         }
     });
-    return { dailyArray, weeklyArray, monthlyArray, importantArray }
+    return { dailyArray, weeklyArray, monthlyArray, importantArray };
 }
-
-/*
-function removeCompletedTasks(array) {
-    array.forEach(task => {
-        if(task.completed === true) {
-            inboxArray.splice(task, 1);
-            storeTasks();
-        }
-    });
-    initializeHomepage();
-};
-*/
 
 export {
     createTask,

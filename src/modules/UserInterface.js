@@ -31,7 +31,7 @@ function initializeHomepage() {
 const navbarButtonController = (() => {
     let array;
     const showInbox = () => {
-        currentTitle.textContent = 'Inbox'
+        currentTitle.textContent = 'Inbox';
         retrieveTasks();
         array = inboxArray;
         displayFunctions.removeChildren();
@@ -39,21 +39,21 @@ const navbarButtonController = (() => {
     };
 
     const showDaily = () => {
-        currentTitle.textContent = 'Today'
+        currentTitle.textContent = 'Today';
         array = dailyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
     };
 
     const showWeekly = () => {
-        currentTitle.textContent = 'Weekly'
+        currentTitle.textContent = 'Weekly';
         array = weeklyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
     };
 
     const showMonthly = () => {
-        currentTitle.textContent = 'Monthly'
+        currentTitle.textContent = 'Monthly';
         array = monthlyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
@@ -112,7 +112,7 @@ const taskModalController = (() => {
         };
 
         if (modaldateinput.value === '') {
-            alert('Please enter a due date for this task')
+            alert('Please enter a due date for this task');
             return;
         };
 
@@ -158,7 +158,6 @@ const displayFunctions = (() => {
     };
 
     const showTaskUI = (title, notes, date, id, checked, priority) => {
-        console.log(priority)
         let task = document.createElement('div');
         task.classList.add('task');
         task.setAttribute('id', `${id}`);
@@ -179,13 +178,13 @@ const displayFunctions = (() => {
 
         let taskNotes = document.createElement('div');
         taskNotes.setAttribute('id', 'taskNotes');
-        taskNotes.textContent = 'Notes:'
+        taskNotes.textContent = 'Notes:';
 
         let notesContent = document.createElement('div');
         notesContent.setAttribute('id', 'notes');
-        notesContent.textContent = `${notes}`
+        notesContent.textContent = `${notes}`;
 
-        let dueDate = document.createElement('div')
+        let dueDate = document.createElement('div');
         dueDate.setAttribute('id', 'dueDate');
         dueDate.textContent = `Due Date:`;
 
@@ -208,41 +207,36 @@ const displayFunctions = (() => {
         } else if (checked === false) {
             input.checked = false;
             taskTitle.style.textDecoration = 'none'
-        }
+        };
 
         if(priority === 'Important') {
             taskTitle.classList.add('pseudoImportant');
-        }
-
-        task.addEventListener('click', () => {
-
-            
-        })
+        };
 
         input.addEventListener('click', () => {
             retrieveTasks()
             if (input.checked === true) {
                 inboxArray[id].completed = true;
                 taskTitle.style.textDecoration = 'line-through';
-                storeTasks(inboxArray)
-                updateTaskArrays(true, inboxArray, id)
+                storeTasks(inboxArray);
+                updateTaskArrays(true, inboxArray, id);
             } else if (input.checked === false) {
                 inboxArray[id].completed = false;
                 taskTitle.style.textDecoration = 'none';
-                console.log(input.checked)
-                storeTasks(inboxArray)
-                updateTaskArrays(false, inboxArray, id)
-            }
-
+                storeTasks(inboxArray);
+                updateTaskArrays(false, inboxArray, id);
+            };
         });
     };
 
     const iterateTaskDisplay = (arr) => {
         arr.forEach(element => {
+            //consider refactoring to pass arguments as object literal (cleaner)
             showTaskUI(element.title, element.notes, element.dueDate, element.taskID, element.completed, element.priority);
         });
     };
 
+    //work on function to remove completed tasks on remove button
     /*remove.addEventListener('click', () => {
         retrieveTasks()
         inboxArray.forEach(task => {
