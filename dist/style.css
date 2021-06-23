@@ -237,6 +237,21 @@ body {
     margin: 20px 120px 20px 20px;
 }
 
+.pseudoImportant {
+    font-size: larger;
+    max-width: 300px;
+    height: fit-content;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    margin: 20px 120px 20px 20px;
+}
+
+.pseudoImportant::before {
+    content: url('./images/important.svg');
+    padding: 10px;
+}
+
 #dueDate {
     display: flex;
     flex-direction: column;
