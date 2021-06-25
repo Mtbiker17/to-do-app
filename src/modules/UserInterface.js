@@ -23,8 +23,12 @@ import {
 function initializeHomepage() {
     retrieveTasks();
     inboxArray.forEach(savedTask => {
+        let index = 0;
+        savedTask.taskID = index;
         organizeTaskArray(savedTask);
-    })
+        storeTasks();
+        index++;
+    });
     displayFunctions.iterateTaskDisplay(inboxArray);
 };
 
