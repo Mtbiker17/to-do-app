@@ -11,7 +11,7 @@ import {
 
 import {
     storeTasks,
-    retrieveTasks
+    retrieveTasks,
 } from './storageFunctions.js'
 
 import {
@@ -208,10 +208,15 @@ const displayFunctions = (() => {
             input.checked = false;
             taskTitle.style.textDecoration = 'none'
         };
-
-        if(priority === 'Important') {
+        if (priority === 'Important') {
             taskTitle.classList.add('pseudoImportant');
         };
+
+        //id and taskID do not match up with these functions - need to find a way to update task ID's or search them through the arrays
+        task.addEventListener('click', () => {
+            console.log(id);
+            console.log(inboxArray)
+        })
 
         input.addEventListener('click', () => {
             retrieveTasks()
@@ -231,27 +236,26 @@ const displayFunctions = (() => {
 
     const iterateTaskDisplay = (arr) => {
         arr.forEach(element => {
-            //consider refactoring to pass arguments as object literal (cleaner)
             showTaskUI(element.title, element.notes, element.dueDate, element.taskID, element.completed, element.priority);
         });
     };
 
     //work on function to remove completed tasks on remove button
-    /*remove.addEventListener('click', () => {
-        retrieveTasks()
+    remove.addEventListener('click', () => {
+        retrieveTasks();
         inboxArray.forEach(task => {
-            if (task.completed === true) {
-                inboxArray.splice(parseInt(task.taskID), 1);
-                storeTasks();
-            }
+            if(task.completed === true)
+            inboxArray.splice(task.taskID, 1);
         })
-    });*/
+        storeTasks();
+        location.reload();
+    });
 
     return {
         removeChildren,
         showTaskUI,
         iterateTaskDisplay,
-        refreshTasksUI
+        refreshTasksUI,
     }
 })();
 

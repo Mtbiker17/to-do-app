@@ -16,5 +16,5 @@ function retrieveTasks() {
 
 export {
     storeTasks,
-    retrieveTasks
+    retrieveTasks,
 };
