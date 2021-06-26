@@ -244,7 +244,6 @@ const displayFunctions = (() => {
         });
     };
 
-    //work on function to remove completed tasks on remove button
     remove.addEventListener('click', () => {
         retrieveTasks();
         inboxArray.forEach(task => {
@@ -253,6 +252,10 @@ const displayFunctions = (() => {
         })
         storeTasks();
         location.reload();
+    });
+
+    arrow.addEventListener('click', () => {
+        arrow.classList.toggle('arrowDown')
     });
 
     return {
