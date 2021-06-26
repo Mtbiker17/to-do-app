@@ -141,6 +141,8 @@ const taskModalController = (() => {
 })();
 
 const displayFunctions = (() => {
+    let toggle = true;
+
     const removeChildren = () => {
         while (taskContainer.lastElementChild) {
             taskContainer.removeChild(taskContainer.lastElementChild);
@@ -247,8 +249,8 @@ const displayFunctions = (() => {
     remove.addEventListener('click', () => {
         retrieveTasks();
         inboxArray.forEach(task => {
-            if(task.completed === true)
-            inboxArray.splice(task.taskID, 1);
+            if (task.completed === true)
+                inboxArray.splice(task.taskID, 1);
         })
         storeTasks();
         location.reload();
@@ -256,6 +258,13 @@ const displayFunctions = (() => {
 
     arrow.addEventListener('click', () => {
         arrow.classList.toggle('arrowDown')
+        if (toggle === true) {
+            project.style.visibility = 'visible'
+            toggle = false;
+        } else if (toggle === false) {
+            project.style.visibility = 'hidden';
+            toggle = true;
+        }
     });
 
     return {
