@@ -145,6 +145,11 @@ body {
 
 #remove {
     width: 340px;
+    transition-duration: 0.5s;
+}
+
+#addTask {
+    transition-duration: 0.5s;
 }
 
 #addTask::before {
@@ -310,7 +315,7 @@ body {
     padding: 25px 20px 0px 25px;
     font-family: inherit;
     height: auto;
-    width: auto;
+    width: 200px;
     flex: .5;
     font-size: 150%;
     color: white;
@@ -331,10 +336,32 @@ body {
     color: white;
 }
 
+#projectHeader {
+    display: flex;
+    flex-direction: row;
+}
+
+#arrow {
+    margin-top: 13px;
+    transition-duration: 0.5s;
+}
+
+.arrowDown {
+    margin-top: 13px;
+    transform: rotate(90deg);
+    transition-duration: 0.5s;
+}
+
+#arrow:hover {
+    background-color: #6a6e77 ;
+    border-radius: 5px;
+}
+
 .mainNavItems {
     width: 80%;
     border-radius: 5px;
     padding: 5px;
+    transition-duration: 0.3s;
 }
 
 #inbox::before {
@@ -372,17 +399,12 @@ body {
 }
 
 #projects {
-    width: 230px;
+    width: 150px;
     border-radius: 5px;
 }
 
 #projects::before {
     content: url('./images/projects.svg');
-    padding: 10px;
-}
-
-#projects::after {
-    content: url('./images/right.svg');
     padding: 10px;
 }
 
