@@ -38,6 +38,14 @@
                     <button id='submitTask'>Add Task</button>
                 </div>
             </div>
+            <div class='modal' id='projectModal'>
+                <div class="modal-content">
+                    <span id="projectCloseBtn">&times;</span>
+                    <div>Project Title</div>
+                    <input class='modal-input' id='submitProjectTitle'>
+                    <button id='submitProject'>Add Project</button>
+                </div>
+            </div>
             <div id='navbar'>
                 <div id='mainNav'>
                     <div class='mainNavItems' id='inbox'>Inbox</div>
@@ -51,12 +59,15 @@
                         <div class='mainNavItems' id='projectTitle'>Projects</div>
                         <div><img src='./images/right.svg' id='arrow'></div>
                     </div>
-                    <div id='project'>Project 1</div>
+                    <div id='projectsContainer'>
+                        <div id='projectList'>Project 1</div>
+                    </div>
                 </div>
             </div>
             <div id='userInterface'>
                 <div id='currentTitle'>Inbox</div>
                 <div id='addTask' class='taskControl'>Add Task</div>
+                <div id='addProject' class='taskControl'>Add Project</div>
                 <div id='remove' class='taskControl'>Remove Completed Tasks</div>
                 <div id='taskContainer'></div>
             </div>
