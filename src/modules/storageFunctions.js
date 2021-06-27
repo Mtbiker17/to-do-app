@@ -1,5 +1,6 @@
 
 import { inboxArray } from './TaskFunctions.js';
+import { projectArray } from './projectFunctions.js';
 
 function storeTasks(array) {
     array = localStorage.setItem('inboxArray', JSON.stringify(inboxArray));
@@ -14,7 +15,22 @@ function retrieveTasks() {
     return inboxArray;
 };
 
+function storeProjects(array) {
+    array = localStorage.setItem('projectArray', JSON.stringify(projectArray));
+    return projectArray;
+};
+
+function retrieveProjects() {
+    projectArray = JSON.parse(localStorage.getItem('projectArray'));
+    if(projectArray === null) {
+        projectArray = [];
+    }
+    return projectArray;
+};
+
 export {
     storeTasks,
     retrieveTasks,
+    storeProjects,
+    retrieveProjects
 };

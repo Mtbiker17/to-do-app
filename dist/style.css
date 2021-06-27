@@ -68,6 +68,13 @@ body {
     margin-left: 95%;
 }
 
+#projectCloseBtn {
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 95%;
+}
+
 #closeBtn:hover,
 #closeBtn:focus {
   color: black;
@@ -89,6 +96,26 @@ body {
 }
 
 #submitTask:hover {
+    color: black;
+	background: rgba(45, 200, 111, 0.3);
+	border-color: rgba(45, 200, 111, 0.3);
+	transition: all 0.4s ease 0s;
+}
+
+#submitProject {
+    width: 30%;
+    margin: auto;
+    border: none;
+    text-transform: uppercase;
+	text-decoration: none;
+	background: #ffffff;
+	padding: 15px;
+	border: 3px solid #494949;
+	display: inline-block;
+	transition: all 0.4s ease 0s;
+}
+
+#submitProject:hover {
     color: black;
 	background: rgba(45, 200, 111, 0.3);
 	border-color: rgba(45, 200, 111, 0.3);
@@ -402,6 +429,8 @@ body {
     background-color: #6a6e77;
 }
 
+#projectNavContainer 
+
 #projectTitle {
     width: 150px;
     border-radius: 5px;
@@ -412,17 +441,29 @@ body {
     padding: 10px;
 }
 
-#project {
-    visibility: hidden;
+#addProject::before {
+    content: url('./images/add.svg');
+    padding: 10px;
+}
+
+#projectList {
     width: 150px;
     border-radius: 5px;
     margin-left: 50px;
     width: 50%;
     padding: 5px;
+    font-weight: lighter;
+    color: #2DC86F;
 }
 
-#project:hover {
+#projectList:hover {
     background-color: #6a6e77;
+}
+
+#projectsContainer {
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 #important::before {

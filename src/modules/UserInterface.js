@@ -9,9 +9,13 @@ import {
     updateTaskArrays
 } from './TaskFunctions.js';
 
+import { createProject } from './projectFunctions.js';
+
 import {
     storeTasks,
     retrieveTasks,
+    storeProjects,
+    retrieveProjects,
 } from './storageFunctions.js'
 
 import {
@@ -19,6 +23,7 @@ import {
     parseISO,
     isBefore,
 } from 'date-fns';
+import { projectArray } from './projectFunctions.js';
 
 function initializeHomepage() {
     retrieveTasks();
@@ -99,7 +104,7 @@ const taskModalController = (() => {
     });
 
     closeBtn.onclick = function () {
-        taskModal.style.display = "none";
+        taskModal.style.display = 'none';
     };
 
     const clearInfo = () => {
@@ -137,7 +142,45 @@ const taskModalController = (() => {
         clearInfo();
         displayFunctions.refreshTasksUI(currentTitle.textContent);
     });
+})();
 
+const projectModalController = (() => {
+    let toggle = false;
+    addProject.addEventListener('click', () => {
+        projectModal.style.display = 'flex';
+
+    });
+
+    projectCloseBtn.onclick = function () {
+        projectModal.style.display = 'none';
+    };
+
+    const clearProjectInfo = () => {
+        submitProject.value = '';
+        projectModal.style.display = 'none';
+    };
+
+    submitProject.addEventListener('click', () => {
+        if (submitProjectTitle.value === '') {
+            alert("Project must have a title");
+            return;
+        };
+        arrow.classList.toggle('arrowDown')
+        if (projectsContainer.style.visibility !== 'visible') {
+            projectsContainer.style.visibility = 'visible'
+        } else {
+            projectsContainer.style.visibility = 'hidden';
+        };
+        retrieveProjects();
+        const project = new createProject(`${submitProjectTitle.value}`, `${projectArray.length}`, false, []);
+        projectArray.push(project)
+        storeProjects(projectArray);
+        console.log(projectArray)
+        clearProjectInfo();
+        //add UI display for new task here
+    });
+
+    return { clearProjectInfo, toggle };
 })();
 
 const displayFunctions = (() => {
@@ -249,22 +292,20 @@ const displayFunctions = (() => {
     remove.addEventListener('click', () => {
         retrieveTasks();
         inboxArray.forEach(task => {
-            if (task.completed === true)
-                inboxArray.splice(task.taskID, 1);
-        })
+            if (task.completed === true);
+            inboxArray.splice(task.taskID, 1);
+        });
         storeTasks();
         location.reload();
     });
 
     arrow.addEventListener('click', () => {
         arrow.classList.toggle('arrowDown')
-        if (toggle === true) {
-            project.style.visibility = 'visible'
-            toggle = false;
-        } else if (toggle === false) {
-            project.style.visibility = 'hidden';
-            toggle = true;
-        }
+        if (projectsContainer.style.visibility !== 'visible') {
+            projectsContainer.style.visibility = 'visible'
+        } else {
+            projectsContainer.style.visibility = 'hidden';
+        };
     });
 
     return {
