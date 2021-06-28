@@ -69,8 +69,17 @@ const navbarButtonController = (() => {
     };
 
     const showImportant = () => {
-        currentTitle.textContent = 'Important'
+        currentTitle.textContent = 'Important';
         array = importantArray;
+        displayFunctions.removeChildren();
+        displayFunctions.iterateTaskDisplay(array);
+    };
+
+    const showProjects = () => {
+        retrieveProjects();
+        currentTitle.textContent = 'Projects';
+        array = projectArray;
+        displayFunctions.removeProjectChildren();
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
     };
@@ -95,7 +104,11 @@ const navbarButtonController = (() => {
         showImportant();
     });
 
-    return { showInbox, showDaily, showWeekly, showMonthly, showImportant };
+    arrow.addEventListener('click', () => {
+        showProjects();
+    });
+
+    return { showInbox, showDaily, showWeekly, showMonthly, showImportant, showProjects };
 })();
 
 const taskModalController = (() => {
@@ -165,8 +178,10 @@ const projectModalController = (() => {
             alert("Project must have a title");
             return;
         };
-        arrow.classList.toggle('arrowDown')
+        projectsContainer.style.visibility = 'hidden';
+        arrow.classList.remove('arrowDown')
         if (projectsContainer.style.visibility !== 'visible') {
+            arrow.classList.add('arrowDown');
             projectsContainer.style.visibility = 'visible'
         } else {
             projectsContainer.style.visibility = 'hidden';
@@ -175,9 +190,8 @@ const projectModalController = (() => {
         const project = new createProject(`${submitProjectTitle.value}`, `${projectArray.length}`, false, []);
         projectArray.push(project)
         storeProjects(projectArray);
-        console.log(projectArray)
         clearProjectInfo();
-        //add UI display for new task here
+        displayFunctions.showProjectUI(`${submitProjectTitle.value}`, `${projectArray.length}`)
     });
 
     return { clearProjectInfo, toggle };
@@ -192,6 +206,12 @@ const displayFunctions = (() => {
         }
     };
 
+    const removeProjectChildren = () => {
+        while (projectsContainer.lastElementChild) {
+            projectsContainer.removeChild(projectsContainer.lastElementChild);
+        }
+    }
+
     const refreshTasksUI = (nav) => {
         if (nav === 'Inbox') {
             navbarButtonController.showInbox();
@@ -203,6 +223,8 @@ const displayFunctions = (() => {
             navbarButtonController.showMonthly();
         } else if (nav === 'Important') {
             navbarButtonController.showImportant();
+        } else if (nav === 'Projects') {
+            navbarButtonController.showProjects();
         }
     };
 
@@ -261,12 +283,6 @@ const displayFunctions = (() => {
             taskTitle.classList.add('pseudoImportant');
         };
 
-        //id and taskID do not match up with these functions - need to find a way to update task ID's or search them through the arrays
-        task.addEventListener('click', () => {
-            console.log(id);
-            console.log(inboxArray)
-        })
-
         input.addEventListener('click', () => {
             retrieveTasks()
             if (input.checked === true) {
@@ -283,7 +299,22 @@ const displayFunctions = (() => {
         });
     };
 
+    const showProjectUI = (title, projectID) => {
+        let projectList = document.createElement('div');
+        projectList.setAttribute('id', `${projectID}`);
+        projectList.classList.add('projectList');
+        projectList.textContent = `${title}`;
+
+        projectsContainer.appendChild(projectList);
+    };
+
     const iterateTaskDisplay = (arr) => {
+        if(arr === projectArray){
+            arr.forEach(element => {
+                showProjectUI(element.title, element.projectID);
+            })
+            return;
+        };
         arr.forEach(element => {
             showTaskUI(element.title, element.notes, element.dueDate, element.taskID, element.completed, element.priority);
         });
@@ -313,6 +344,8 @@ const displayFunctions = (() => {
         showTaskUI,
         iterateTaskDisplay,
         refreshTasksUI,
+        showProjectUI,
+        removeProjectChildren
     }
 })();
 
