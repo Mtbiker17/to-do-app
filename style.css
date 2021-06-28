@@ -446,11 +446,10 @@ body {
     padding: 10px;
 }
 
-#projectList {
-    width: 150px;
+.projectList {
+    max-width: 250px;
     border-radius: 5px;
     margin-left: 50px;
-    width: 50%;
     padding: 5px;
     font-weight: lighter;
     color: #2DC86F;
