@@ -164,6 +164,7 @@ body {
 
 .taskControl:hover {
     background-color: #6a6e77 ;
+    transition-duration: 0.5s;
 }
 
 #remove::before {
@@ -173,11 +174,6 @@ body {
 
 #remove {
     width: 340px;
-    transition-duration: 0.5s;
-}
-
-#addTask {
-    transition-duration: 0.5s;
 }
 
 #addTask::before {
@@ -189,6 +185,16 @@ body {
     height: 100%;
     padding-top: 10px;
 }
+
+#addProjectTask {
+    width: 250px;
+}
+
+#addProjectTask::before {
+    content: url('./images/add.svg');
+    padding: 10px;
+}
+
 
 .task {
     display: flex;
@@ -447,7 +453,7 @@ body {
 }
 
 .projectList {
-    max-width: 250px;
+    max-width: 200px;
     border-radius: 5px;
     margin-left: 50px;
     padding: 5px;
