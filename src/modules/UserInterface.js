@@ -23,6 +23,7 @@ import {
     parseISO,
     isBefore,
 } from 'date-fns';
+
 import { projectArray } from './projectFunctions.js';
 
 function initializeHomepage() {
@@ -41,6 +42,8 @@ const navbarButtonController = (() => {
     let array;
     const showInbox = () => {
         currentTitle.textContent = 'Inbox';
+        addTask.style.visibility = 'visible';
+        addProjectTask.style.visibility = 'hidden';
         retrieveTasks();
         array = inboxArray;
         displayFunctions.removeChildren();
@@ -49,6 +52,8 @@ const navbarButtonController = (() => {
 
     const showDaily = () => {
         currentTitle.textContent = 'Today';
+        addTask.style.visibility = 'visible';
+        addProjectTask.style.visibility = 'hidden';
         array = dailyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
@@ -56,6 +61,8 @@ const navbarButtonController = (() => {
 
     const showWeekly = () => {
         currentTitle.textContent = 'Weekly';
+        addTask.style.visibility = 'visible';
+        addProjectTask.style.visibility = 'hidden';
         array = weeklyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
@@ -63,6 +70,8 @@ const navbarButtonController = (() => {
 
     const showMonthly = () => {
         currentTitle.textContent = 'Monthly';
+        addTask.style.visibility = 'visible';
+        addProjectTask.style.visibility = 'hidden';
         array = monthlyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
@@ -70,6 +79,8 @@ const navbarButtonController = (() => {
 
     const showImportant = () => {
         currentTitle.textContent = 'Important';
+        addTask.style.visibility = 'visible';
+        addProjectTask.style.visibility = 'hidden';
         array = importantArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
@@ -78,6 +89,8 @@ const navbarButtonController = (() => {
     const showProjects = () => {
         retrieveProjects();
         currentTitle.textContent = 'Projects';
+        addTask.style.visibility = 'hidden';
+        addProjectTask.style.visibility = 'visible';
         array = projectArray;
         displayFunctions.removeProjectChildren();
         displayFunctions.removeChildren();
@@ -158,10 +171,9 @@ const taskModalController = (() => {
 })();
 
 const projectModalController = (() => {
-    let toggle = false;
     addProject.addEventListener('click', () => {
         projectModal.style.display = 'flex';
-
+        navbarButtonController.showProjects();
     });
 
     projectCloseBtn.onclick = function () {
@@ -191,15 +203,13 @@ const projectModalController = (() => {
         projectArray.push(project)
         storeProjects(projectArray);
         clearProjectInfo();
-        displayFunctions.showProjectUI(`${submitProjectTitle.value}`, `${projectArray.length}`)
+        displayFunctions.showProjectUI(`${submitProjectTitle.value}`, `${projectArray.length}`);
+        displayFunctions.refreshTasksUI(currentTitle.textContent);
     });
-
-    return { clearProjectInfo, toggle };
+    return { clearProjectInfo };
 })();
 
 const displayFunctions = (() => {
-    let toggle = true;
-
     const removeChildren = () => {
         while (taskContainer.lastElementChild) {
             taskContainer.removeChild(taskContainer.lastElementChild);
@@ -210,6 +220,10 @@ const displayFunctions = (() => {
         while (projectsContainer.lastElementChild) {
             projectsContainer.removeChild(projectsContainer.lastElementChild);
         }
+    };
+
+    const addProjectButtonsUI = () => {
+        addTask.style.visibility = 'hidden';
     }
 
     const refreshTasksUI = (nav) => {
@@ -224,6 +238,7 @@ const displayFunctions = (() => {
         } else if (nav === 'Important') {
             navbarButtonController.showImportant();
         } else if (nav === 'Projects') {
+            taskButtonContainer.style.visibility = 'visible';
             navbarButtonController.showProjects();
         }
     };
@@ -304,7 +319,6 @@ const displayFunctions = (() => {
         projectList.setAttribute('id', `${projectID}`);
         projectList.classList.add('projectList');
         projectList.textContent = `${title}`;
-
         projectsContainer.appendChild(projectList);
     };
 
@@ -346,7 +360,7 @@ const displayFunctions = (() => {
         refreshTasksUI,
         showProjectUI,
         removeProjectChildren
-    }
+    };
 })();
 
 export {
