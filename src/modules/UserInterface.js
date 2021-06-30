@@ -222,10 +222,6 @@ const displayFunctions = (() => {
         }
     };
 
-    const addProjectButtonsUI = () => {
-        addTask.style.visibility = 'hidden';
-    }
-
     const refreshTasksUI = (nav) => {
         if (nav === 'Inbox') {
             navbarButtonController.showInbox();
@@ -260,7 +256,7 @@ const displayFunctions = (() => {
 
         let taskTitle = document.createElement('div');
         taskTitle.setAttribute('id', 'taskTitle');
-        taskTitle.textContent = `${title}`;
+        taskTitle.textContent = title;
 
         let taskNotes = document.createElement('div');
         taskNotes.setAttribute('id', 'taskNotes');
@@ -268,7 +264,7 @@ const displayFunctions = (() => {
 
         let notesContent = document.createElement('div');
         notesContent.setAttribute('id', 'notes');
-        notesContent.textContent = `${notes}`;
+        notesContent.textContent = notes;
 
         let dueDate = document.createElement('div');
         dueDate.setAttribute('id', 'dueDate');
@@ -314,16 +310,42 @@ const displayFunctions = (() => {
         });
     };
 
-    const showProjectUI = (title, projectID) => {
+    const showProjectUI = (title, projectID, checked, array) => {
         let projectList = document.createElement('div');
-        projectList.setAttribute('id', `${projectID}`);
+        projectList.setAttribute('id', projectID);
         projectList.classList.add('projectList');
-        projectList.textContent = `${title}`;
+
+        let checkbox = document.createElement('label')
+        checkbox.classList.add('checkbox-label');
+        let input = document.createElement('input');
+        input.setAttribute('type', 'checkbox');
+        checkbox.appendChild(input);
+        let span = document.createElement('span');
+        span.classList.add('checkbox-custom');
+        span.style.marginTop = '5px';
+        checkbox.appendChild(span);
+
+        let projectTitle = document.createElement('div');
+        projectTitle.setAttribute('id', projectID);
+        projectTitle.textContent = title;
+        projectTitle.classList.add('projectTitle')
+        projectList.appendChild(checkbox);
+        projectList.appendChild(projectTitle);
         projectsContainer.appendChild(projectList);
+
+        projectTitle.addEventListener('click', () => {
+            taskButtonContainer.style.visibility = 'visible';
+            navbarButtonController.showProjects();
+
+            let projectTitleDisplay = document.createElement('div');
+            projectTitleDisplay.classList.add('projectTitleDisplay')
+            projectTitleDisplay.textContent = title;
+            taskContainer.appendChild(projectTitleDisplay);
+        });
     };
 
     const iterateTaskDisplay = (arr) => {
-        if(arr === projectArray){
+        if (arr === projectArray) {
             arr.forEach(element => {
                 showProjectUI(element.title, element.projectID);
             })
