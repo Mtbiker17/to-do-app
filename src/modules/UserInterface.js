@@ -9,7 +9,7 @@ import {
     updateTaskArrays
 } from './TaskFunctions.js';
 
-import { createProject } from './projectFunctions.js';
+import { createProject, projectArray } from './projectFunctions.js';
 
 import {
     storeTasks,
@@ -23,8 +23,6 @@ import {
     parseISO,
     isBefore,
 } from 'date-fns';
-
-import { projectArray } from './projectFunctions.js';
 
 function initializeHomepage() {
     retrieveTasks();
@@ -203,7 +201,7 @@ const projectModalController = (() => {
         projectArray.push(project)
         storeProjects(projectArray);
         clearProjectInfo();
-        displayFunctions.showProjectUI(`${submitProjectTitle.value}`, `${projectArray.length}`);
+        displayFunctions.showProjectUI(`${submitProjectTitle.value}`, `${projectArray.length}`, false, []);
         displayFunctions.refreshTasksUI(currentTitle.textContent);
     });
     return { clearProjectInfo };
@@ -315,25 +313,40 @@ const displayFunctions = (() => {
         projectList.setAttribute('id', projectID);
         projectList.classList.add('projectList');
 
-        let checkbox = document.createElement('label')
-        checkbox.classList.add('checkbox-label');
-        let input = document.createElement('input');
-        input.setAttribute('type', 'checkbox');
-        checkbox.appendChild(input);
-        let span = document.createElement('span');
-        span.classList.add('checkbox-custom');
-        span.style.marginTop = '5px';
-        checkbox.appendChild(span);
+        let projectCheckbox = document.createElement('label')
+        projectCheckbox.classList.add('checkbox-label');
+        let projectInput = document.createElement('input');
+        projectInput.setAttribute('type', 'checkbox');
+        projectCheckbox.appendChild(projectInput);
+        let projectSpan = document.createElement('span');
+        projectSpan.classList.add('checkbox-custom');
+        projectSpan.style.marginTop = '5px';
+        projectCheckbox.appendChild(projectSpan);
 
         let projectTitle = document.createElement('div');
         projectTitle.setAttribute('id', projectID);
         projectTitle.textContent = title;
         projectTitle.classList.add('projectTitle')
-        projectList.appendChild(checkbox);
+
+        projectList.appendChild(projectCheckbox);
         projectList.appendChild(projectTitle);
         projectsContainer.appendChild(projectList);
 
+        projectCheckbox.addEventListener('click', () => {
+            console.log(checked)
+            console.log('input', projectInput.checked);
+            console.log(projectID.completed);
+            if (checked === true) {
+                projectList.style.textDecoration = 'line-through'
+                input.checked = true
+            } else if (checked === false) {
+                input.checked = false;
+                projectList.style.textDecoration = 'none'
+            };
+        });
+
         projectTitle.addEventListener('click', () => {
+            console.log(projectArray[projectID])
             taskButtonContainer.style.visibility = 'visible';
             navbarButtonController.showProjects();
 

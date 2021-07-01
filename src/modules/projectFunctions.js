@@ -1,4 +1,6 @@
 
+let projectArray = [];
+
 class createProject {
     constructor(title, projectID, completed, taskList) {
         this.title = title;
@@ -27,4 +29,4 @@ class createProject {
 
 };
 
-export { createProject };
+export { createProject, projectArray };
