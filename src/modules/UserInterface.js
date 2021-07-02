@@ -201,7 +201,6 @@ const projectModalController = (() => {
         projectArray.push(project)
         storeProjects(projectArray);
         clearProjectInfo();
-        displayFunctions.showProjectUI(`${submitProjectTitle.value}`, `${projectArray.length}`, false, []);
         displayFunctions.refreshTasksUI(currentTitle.textContent);
     });
     return { clearProjectInfo };
@@ -332,16 +331,26 @@ const displayFunctions = (() => {
         projectList.appendChild(projectTitle);
         projectsContainer.appendChild(projectList);
 
-        projectCheckbox.addEventListener('click', () => {
-            console.log(checked)
-            console.log('input', projectInput.checked);
-            console.log(projectID.completed);
-            if (checked === true) {
-                projectList.style.textDecoration = 'line-through'
-                input.checked = true
-            } else if (checked === false) {
-                input.checked = false;
-                projectList.style.textDecoration = 'none'
+        if (checked === true) {
+            projectTitle.style.textDecoration = 'line-through'
+            projectInput.checked = true
+        } else if (checked === false) {
+            projectInput.checked = false;
+            projectTitle.style.textDecoration = 'none'
+        };
+
+        projectInput.addEventListener('click', () => {
+            retrieveProjects();
+            if (projectInput.checked === true) {
+                projectArray[projectID].completed = true;
+                projectTitle.style.textDecoration = 'line-through';
+                storeProjects(projectArray);
+                refreshTasksUI(currentTitle.textContent);
+            } else if (projectInput.checked === false) {
+                projectArray[projectID].completed = false;
+                projectTitle.style.textDecoration = 'none';
+                storeProjects(projectArray);
+                refreshTasksUI(currentTitle.textContent);
             };
         });
 
@@ -360,7 +369,7 @@ const displayFunctions = (() => {
     const iterateTaskDisplay = (arr) => {
         if (arr === projectArray) {
             arr.forEach(element => {
-                showProjectUI(element.title, element.projectID);
+                showProjectUI(element.title, element.projectID, element.completed, element.array);
             })
             return;
         };
