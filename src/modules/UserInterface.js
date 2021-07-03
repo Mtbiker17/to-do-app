@@ -9,7 +9,10 @@ import {
     updateTaskArrays
 } from './TaskFunctions.js';
 
-import { createProject, projectArray } from './projectFunctions.js';
+import {
+    createProject,
+    projectArray
+} from './projectFunctions.js';
 
 import {
     storeTasks,
@@ -26,6 +29,8 @@ import {
 
 function initializeHomepage() {
     retrieveTasks();
+    retrieveProjects();
+
     inboxArray.forEach(savedTask => {
         let index = 0;
         savedTask.taskID = index;
@@ -33,7 +38,16 @@ function initializeHomepage() {
         storeTasks();
         index++;
     });
+    
+    /*projectArray.forEach(savedProject => {
+        let projectIndex = 0;
+        savedProject.projectID = projectIndex;
+        projectIndex++;
+        storeProjects(projectArray)
+    });*/
+    
     displayFunctions.iterateTaskDisplay(inboxArray);
+    displayFunctions.iterateTaskDisplay(projectArray);
 };
 
 const navbarButtonController = (() => {
@@ -341,6 +355,7 @@ const displayFunctions = (() => {
 
         projectInput.addEventListener('click', () => {
             retrieveProjects();
+            console.log(projectArray[projectID])
             if (projectInput.checked === true) {
                 projectArray[projectID].completed = true;
                 projectTitle.style.textDecoration = 'line-through';
@@ -354,7 +369,7 @@ const displayFunctions = (() => {
             };
         });
 
-        projectTitle.addEventListener('click', () => {
+        projectList.addEventListener('click', () => {
             console.log(projectArray[projectID])
             taskButtonContainer.style.visibility = 'visible';
             navbarButtonController.showProjects();
@@ -380,11 +395,19 @@ const displayFunctions = (() => {
 
     remove.addEventListener('click', () => {
         retrieveTasks();
+        retrieveProjects();
         inboxArray.forEach(task => {
             if (task.completed === true);
             inboxArray.splice(task.taskID, 1);
         });
-        storeTasks();
+
+        /*projectArray.forEach(project => {
+            if (project.completed === true) {
+                projectArray.splice(project.projectID, 1);
+            }
+        });
+        storeTasks();*/
+        storeProjects(projectArray);
         location.reload();
     });
 
