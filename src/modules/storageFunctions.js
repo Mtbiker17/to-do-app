@@ -15,9 +15,9 @@ function retrieveTasks() {
     return inboxArray;
 };
 
-function storeProjects(array) {
-    array = localStorage.setItem('projectArray', JSON.stringify(projectArray));
-    return projectArray;
+function storeProjects(projectArray) {
+    projectArray = localStorage.setItem('projectArray', JSON.stringify(projectArray));
+    return projectArray
 };
 
 function retrieveProjects() {

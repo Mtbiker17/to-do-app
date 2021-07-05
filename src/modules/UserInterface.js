@@ -346,8 +346,8 @@ const displayFunctions = (() => {
         projectsContainer.appendChild(projectList);
 
         if (checked === true) {
-            projectTitle.style.textDecoration = 'line-through'
             projectInput.checked = true
+            projectTitle.style.textDecoration = 'line-through';
         } else if (checked === false) {
             projectInput.checked = false;
             projectTitle.style.textDecoration = 'none'
@@ -355,7 +355,6 @@ const displayFunctions = (() => {
 
         projectInput.addEventListener('click', () => {
             retrieveProjects();
-            console.log(projectArray[projectID])
             if (projectInput.checked === true) {
                 projectArray[projectID].completed = true;
                 projectTitle.style.textDecoration = 'line-through';
@@ -401,12 +400,12 @@ const displayFunctions = (() => {
             inboxArray.splice(task.taskID, 1);
         });
 
-        /*projectArray.forEach(project => {
-            if (project.completed === true) {
-                projectArray.splice(project.projectID, 1);
-            }
-        });
-        storeTasks();*/
+        /*projectArray.forEach(projectTask => {
+            if (projectTask.completed === true) {
+                projectArray.splice(projectTask.projectID, 1);
+            };
+        });*/
+        storeTasks(inboxArray);
         storeProjects(projectArray);
         location.reload();
     });
