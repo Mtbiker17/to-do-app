@@ -1,4 +1,3 @@
-
 let projectArray = [];
 
 class createProject {

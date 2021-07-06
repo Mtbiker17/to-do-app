@@ -30,22 +30,21 @@ import {
 function initializeHomepage() {
     retrieveTasks();
     retrieveProjects();
-
+    let index = 0;
+    let projectIndex = 0;
     inboxArray.forEach(savedTask => {
-        let index = 0;
         savedTask.taskID = index;
         organizeTaskArray(savedTask);
-        storeTasks();
         index++;
     });
-    
-    /*projectArray.forEach(savedProject => {
-        let projectIndex = 0;
+    storeTasks();
+
+    projectArray.forEach(savedProject => {
         savedProject.projectID = projectIndex;
         projectIndex++;
         storeProjects(projectArray)
-    });*/
-    
+    });
+
     displayFunctions.iterateTaskDisplay(inboxArray);
     displayFunctions.iterateTaskDisplay(projectArray);
 };
@@ -176,7 +175,7 @@ const taskModalController = (() => {
             `${modaldateinput.value}`, `${inboxArray.length}`, false);
         inboxArray.push(task);
         organizeTaskArray(task);
-        storeTasks();
+        storeTasks(inboxArray);
         clearInfo();
         displayFunctions.refreshTasksUI(currentTitle.textContent);
     });
@@ -187,6 +186,15 @@ const projectModalController = (() => {
         projectModal.style.display = 'flex';
         navbarButtonController.showProjects();
     });
+
+    addProjectTask.addEventListener('click', () => {
+        projectTitleDisplay.style.visibility = 'visible';
+        if(projectTitleDisplay === '') {
+            alert('Please select a project');
+            return;
+        }
+        console.log(projectArray[projectTitleDisplay.id].taskList);
+    })
 
     projectCloseBtn.onclick = function () {
         projectModal.style.display = 'none';
@@ -375,6 +383,7 @@ const displayFunctions = (() => {
 
             let projectTitleDisplay = document.createElement('div');
             projectTitleDisplay.classList.add('projectTitleDisplay')
+            projectTitleDisplay.setAttribute('id', `${projectID}`);
             projectTitleDisplay.textContent = title;
             taskContainer.appendChild(projectTitleDisplay);
         });
@@ -396,15 +405,16 @@ const displayFunctions = (() => {
         retrieveTasks();
         retrieveProjects();
         inboxArray.forEach(task => {
-            if (task.completed === true);
-            inboxArray.splice(task.taskID, 1);
+            if (task.completed === true) {
+                inboxArray.splice(task.taskID, 1);
+            };
         });
 
-        /*projectArray.forEach(projectTask => {
+        projectArray.forEach(projectTask => {
             if (projectTask.completed === true) {
                 projectArray.splice(projectTask.projectID, 1);
             };
-        });*/
+        });
         storeTasks(inboxArray);
         storeProjects(projectArray);
         location.reload();

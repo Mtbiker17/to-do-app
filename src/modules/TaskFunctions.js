@@ -66,33 +66,33 @@ function organizeTaskArray(task) {
     return { dailyArray, weeklyArray, monthlyArray, importantArray };
 };
 
-function updateTaskArrays(checked, inboxArray, id) {
+function updateTaskArrays(taskCompleted, inboxArray, id) {
     inboxArray.forEach(task => {
-        if (isToday(parseISO(task.dueDate)) === true && checked === true && task.taskID === id) {
+        if (isToday(parseISO(task.dueDate)) === true && taskCompleted === true && task.taskID === id) {
             dailyArray[task.taskID].completed = true;
         }
-        if (isToday(parseISO(task.dueDate)) === true && checked === false && task.taskID === id) {
+        if (isToday(parseISO(task.dueDate)) === true && taskCompleted === false && task.taskID === id) {
             dailyArray[task.taskID].completed = false;
         }
 
-        if (isThisWeek(parseISO(task.dueDate)) === true && checked === true && task.taskID === id) {
+        if (isThisWeek(parseISO(task.dueDate)) === true && taskCompleted === true && task.taskID === id) {
             weeklyArray[task.taskID].completed = true;
         }
-        if (isThisWeek(parseISO(task.dueDate)) === true && checked === false && task.taskID === id) {
+        if (isThisWeek(parseISO(task.dueDate)) === true && taskCompleted === false && task.taskID === id) {
             weeklyArray[task.taskID].completed = false;
         }
 
-        if (isThisMonth(parseISO(task.dueDate)) === true && checked == true && task.taskID === id) {
+        if (isThisMonth(parseISO(task.dueDate)) === true && taskCompleted == true && task.taskID === id) {
             monthlyArray[task.taskID].completed = true;
         }
-        if (isThisMonth(parseISO(task.dueDate)) === true && checked === false && task.taskID === id) {
+        if (isThisMonth(parseISO(task.dueDate)) === true && taskCompleted === false && task.taskID === id) {
             monthlyArray[task.taskID].completed = false;
         }
 
-        if (task.priority === 'Important' && checked === true && task.taskID === id) {
+        if (task.priority === 'Important' && taskCompleted === true && task.taskID === id) {
             importantArray[task.taskID].completed = true;
         }
-        if (task.priority === 'Important' && checked === false && task.taskID === id) {
+        if (task.priority === 'Important' && taskCompleted === false && task.taskID === id) {
             importantArray[task.taskID].completed = false;
         }
     });

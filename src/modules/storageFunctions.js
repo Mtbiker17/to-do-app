@@ -1,4 +1,3 @@
-
 import { inboxArray } from './TaskFunctions.js';
 import { projectArray } from './projectFunctions.js';
 
@@ -32,5 +31,5 @@ export {
     storeTasks,
     retrieveTasks,
     storeProjects,
-    retrieveProjects
+    retrieveProjects,
 };
