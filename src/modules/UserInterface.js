@@ -187,15 +187,6 @@ const projectModalController = (() => {
         navbarButtonController.showProjects();
     });
 
-    addProjectTask.addEventListener('click', () => {
-        projectTitleDisplay.style.visibility = 'visible';
-        if(projectTitleDisplay === '') {
-            alert('Please select a project');
-            return;
-        }
-        console.log(projectArray[projectTitleDisplay.id].taskList);
-    })
-
     projectCloseBtn.onclick = function () {
         projectModal.style.display = 'none';
     };
@@ -329,7 +320,7 @@ const displayFunctions = (() => {
         });
     };
 
-    const showProjectUI = (title, projectID, checked, array) => {
+    const showProjectUI = (title, projectID, checked) => {
         let projectList = document.createElement('div');
         projectList.setAttribute('id', projectID);
         projectList.classList.add('projectList');
@@ -392,7 +383,7 @@ const displayFunctions = (() => {
     const iterateTaskDisplay = (arr) => {
         if (arr === projectArray) {
             arr.forEach(element => {
-                showProjectUI(element.title, element.projectID, element.completed, element.array);
+                showProjectUI(element.title, element.projectID, element.completed);
             })
             return;
         };
@@ -400,6 +391,12 @@ const displayFunctions = (() => {
             showTaskUI(element.title, element.notes, element.dueDate, element.taskID, element.completed, element.priority);
         });
     };
+
+    /*addProjectTask.addEventListener('click', () => {
+            if(projectNumber === undefined) {
+                alert('No project has been selected, please select a project');
+            }
+        })*/
 
     remove.addEventListener('click', () => {
         retrieveTasks();
