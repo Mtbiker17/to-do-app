@@ -141,9 +141,7 @@ const taskModalController = (() => {
         taskModal.style.display = 'flex';
     });
 
-    closeBtn.onclick = function () {
-        taskModal.style.display = 'none';
-    };
+    closeBtn.onclick = () => taskModal.style.display = 'none';
 
     const clearInfo = () => {
         submitTitle.value = '';
@@ -188,9 +186,9 @@ const projectModalController = (() => {
         navbarButtonController.showProjects();
     });
 
-    projectCloseBtn.onclick = function () {
-        projectModal.style.display = 'none';
-    };
+    projectTaskCloseBtn.onclick = () => projectTaskModal.style.display = 'none';
+
+    projectCloseBtn.onclick = () => projectModal.style.display = 'none';
 
     const clearProjectInfo = () => {
         submitProject.value = '';
@@ -386,7 +384,7 @@ const displayFunctions = (() => {
             projectTitleDisplay.textContent = title;
             taskContainer.appendChild(projectTitleDisplay);
             taskContainer.appendChild(addProjectTask);
-            
+
             addProjectTask.addEventListener('click', () => {
                 projectTaskModal.style.display = 'flex';
             })

@@ -3,11 +3,11 @@ import { isThisISOWeek } from "date-fns";
 let projectArray = [];
 
 class createProject {
-    constructor(title, projectID, completed, taskList) {
+    constructor(title, projectID, completed, projectTaskList) {
         this.title = title;
         this.projectID = projectID;
         this.completed = completed;
-        this.taskList = taskList;
+        this.projectTaskList = projectTaskList;
     };
 
     getTitle() {
@@ -15,6 +15,7 @@ class createProject {
     };
 
     createProjectID() {
+        console.log('hi');
         return this.projectID;
     };
 
@@ -22,11 +23,26 @@ class createProject {
         return this.completed;
     };
 
-    makeTaskArray() {
-        let taskList = []
-        taskList = localStorage.setItem(`${this.title}`, JSON.stringify(`${this.title}`));
-        return this.taskList;
+    makeProjectTaskArray() {
+        let projectTaskList = []
+        return this.projectTaskList;
     };
+
+    saveProjectTaskArray(projectTask) {
+        this.projectTaskList = localStorage.setItem(this.projectTaskList), JSON.stringify(this.projectTaskList);
+        return this.projectTaskList
+    }
+
+    getProjectTaskArray(projectTask) {
+        projectTask = JSON.parse(localStorage.getItem(`${this.projectTaskList}`));
+        return this.projectTask;
+    }
+
+    addTasktoProjectArray(projectTask) {
+        projectTaskList.push(projectTask);
+        projectTask = localStorage.setItem(this.projectTaskList, JSON.stringify(this.projectTaskList));
+        return this.projectTask;
+    }
 };
 
 class createProjectTask {
