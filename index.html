@@ -46,6 +46,16 @@
                     <button id='submitProject'>Add Project</button>
                 </div>
             </div>
+            <div class='modal' id='projectTaskModal'>
+                <div class="modal-content">
+                    <span id="CloseBtn">&times;</span>
+                    <div>Title</div>
+                    <input class='modal-input' id='projectTaskTitle'>
+                    <div>Notes</div>
+                    <input class='modal-input' id='projectTaskNotes'>
+                    <button id='submitProjectTask'>Add Task</button>
+                </div>
+            </div>
             <div id='navbar'>
                 <div id='mainNav'>
                     <div class='mainNavItems' id='inbox'>Inbox</div>
@@ -67,7 +77,6 @@
                 <div id='currentTitle'>Inbox</div>
                 <div id='taskButtonContainer'>
                     <div id='addTask' class='taskControl'>Add Task</div>
-                    <div id='addProjectTask' class='taskControl'>Add Project Task</div>
                     <div id='addProject' class='taskControl'>Add Project</div>
                     <div id='remove' class='taskControl'>Remove Completed Tasks</div>
                 </div>
