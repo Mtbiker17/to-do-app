@@ -1,3 +1,5 @@
+import { isThisISOWeek } from "date-fns";
+
 let projectArray = [];
 
 class createProject {
@@ -25,7 +27,21 @@ class createProject {
         taskList = localStorage.setItem(`${this.title}`, JSON.stringify(`${this.title}`));
         return this.taskList;
     };
-
 };
 
-export { createProject, projectArray };
+class createProjectTask {
+    constructor(title, notes) {
+        this.title = title
+        this.notes = notes;
+    }
+
+    getProjectTaskTitle() {
+        return this.title;
+    }
+
+    getProjectTaskNotes() {
+        return this.notes;
+    }
+};
+
+export { createProject, createProjectTask, projectArray };

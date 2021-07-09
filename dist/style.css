@@ -157,7 +157,7 @@ body {
     justify-content: center;
     font-family: 'PT San', sans-serif;
     color: white;
-    width: 175px;
+    width: fit-content;
     border-radius: 5px;
     padding: 5px;
 }
@@ -184,10 +184,6 @@ body {
 #taskContainer {
     height: 100%;
     padding-top: 10px;
-}
-
-#addProjectTask {
-    width: 250px;
 }
 
 #addProjectTask::before {
