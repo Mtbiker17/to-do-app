@@ -215,20 +215,21 @@ const projectModalController = (() => {
         clearProjectInfo();
         displayFunctions.refreshTasksUI(currentTitle.textContent);
     });
-    return { clearProjectInfo };
-})();
 
-/*const projectTaskModalController = (() => {
     submitProjectTask.addEventListener('click', () => {
-        if (projectTaskTitle === ''){
+        let projectID = document.getElementsByClassName('projectTitleDisplay')[0].id;
+        if (projectTaskTitle.value === '') {
             alert('Please give task a title');
             return;
         };
-        const projectTaskNew = new createProjectTask(projectTaskTitle, projectTaskNotes);
-        projectTaskNew.saveProjectTaskArray(projectTaskNew);
-        projectTaskList.push(projectTaskNew);
-    })
-})();*/
+        const projectTaskNew = new createProjectTask(projectTaskTitle.value, projectTaskNotes.value);
+        projectArray[projectID].projectTaskList.push(projectTaskNew);
+        storeProjects(projectArray);
+        console.log(projectArray[projectID]);
+    });
+
+    return { clearProjectInfo };
+})();
 
 const displayFunctions = (() => {
     const removeChildren = () => {
