@@ -1,5 +1,3 @@
-import { isThisISOWeek } from "date-fns";
-
 let projectArray = [];
 
 class createProject {
@@ -19,29 +17,9 @@ class createProject {
         return this.projectID;
     };
 
-    checkCompleted() {
-        return this.completed;
-    };
-
     makeProjectTaskArray() {
-        let projectTaskList = []
+        projectTaskList = [];
         return this.projectTaskList;
-    };
-
-    saveProjectTaskArray(projectTask) {
-        this.projectTaskList = localStorage.setItem(this.projectTaskList), JSON.stringify(this.projectTaskList);
-        return this.projectTaskList
-    }
-
-    getProjectTaskArray(projectTask) {
-        projectTask = JSON.parse(localStorage.getItem(`${this.projectTaskList}`));
-        return this.projectTask;
-    }
-
-    addTasktoProjectArray(projectTask) {
-        projectTaskList.push(projectTask);
-        projectTask = localStorage.setItem(this.projectTaskList, JSON.stringify(this.projectTaskList));
-        return this.projectTask;
     }
 };
 
@@ -58,6 +36,22 @@ class createProjectTask {
     getProjectTaskNotes() {
         return this.notes;
     }
+
+    /*saveProjectTaskArray(projectTaskNew) {
+        projectTaskNew = localStorage.setItem('projectTaskNew', JSON.stringify(projectTaskNew));
+        return this.projectTaskList
+    }
+
+    getProjectTaskArray(projectTask) {
+        projectTask = JSON.parse(localStorage.getItem(`${this.projectTaskList}`));
+        return this.projectTask;
+    }
+
+    addTasktoProjectArray(projectTask) {
+        projectTaskList.push(projectTask);
+        projectTask = localStorage.setItem(this.projectTaskList, JSON.stringify(this.projectTaskList));
+        return this.projectTask;
+    }*/
 };
 
 export { createProject, createProjectTask, projectArray };

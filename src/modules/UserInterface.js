@@ -218,6 +218,18 @@ const projectModalController = (() => {
     return { clearProjectInfo };
 })();
 
+/*const projectTaskModalController = (() => {
+    submitProjectTask.addEventListener('click', () => {
+        if (projectTaskTitle === ''){
+            alert('Please give task a title');
+            return;
+        };
+        const projectTaskNew = new createProjectTask(projectTaskTitle, projectTaskNotes);
+        projectTaskNew.saveProjectTaskArray(projectTaskNew);
+        projectTaskList.push(projectTaskNew);
+    })
+})();*/
+
 const displayFunctions = (() => {
     const removeChildren = () => {
         while (taskContainer.lastElementChild) {
@@ -367,7 +379,7 @@ const displayFunctions = (() => {
         });
 
         projectList.addEventListener('click', () => {
-            console.log(projectArray[projectID])
+            console.log(projectArray[projectList.id]);
             taskButtonContainer.style.visibility = 'visible';
             navbarButtonController.showProjects();
 
@@ -402,12 +414,6 @@ const displayFunctions = (() => {
             showTaskUI(element.title, element.notes, element.dueDate, element.taskID, element.completed, element.priority);
         });
     };
-
-    /*addProjectTask.addEventListener('click', () => {
-            if(projectNumber === undefined) {
-                alert('No project has been selected, please select a project');
-            }
-        })*/
 
     remove.addEventListener('click', () => {
         retrieveTasks();
