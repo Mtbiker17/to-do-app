@@ -195,6 +195,13 @@ const projectModalController = (() => {
         projectModal.style.display = 'none';
     };
 
+    const clearProjectTaskInfo = () => {
+        projectTaskTitle.value = '';
+        projectTaskNotes.value = '';
+        projectTaskModal.style.display = 'none';
+        
+    };
+
     submitProject.addEventListener('click', () => {
         if (submitProjectTitle.value === '') {
             alert("Project must have a title");
@@ -225,7 +232,7 @@ const projectModalController = (() => {
         const projectTaskNew = new createProjectTask(projectTaskTitle.value, projectTaskNotes.value);
         projectArray[projectID].projectTaskList.push(projectTaskNew);
         storeProjects(projectArray);
-        console.log(projectArray[projectID]);
+        clearProjectTaskInfo();
     });
 
     return { clearProjectInfo };
