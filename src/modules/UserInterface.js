@@ -229,7 +229,8 @@ const projectModalController = (() => {
             alert('Please give task a title');
             return;
         };
-        const projectTaskNew = new createProjectTask(projectTaskTitle.value, projectTaskNotes.value);
+        const projectTaskNew = new createProjectTask(projectTaskTitle.value, projectTaskNotes.value, 
+            projectArray[projectID].projectTaskList.length, projectID, false);
         projectArray[projectID].projectTaskList.push(projectTaskNew);
         storeProjects(projectArray);
         clearProjectTaskInfo();
@@ -411,6 +412,55 @@ const displayFunctions = (() => {
         });
     };
 
+    const showProjectTaskUI = (projTitle, projNotes, projTaskID, projID, checked) => {
+        let pTask = document.createElement('div');
+        pTask.classList.add('task');
+        pTask.setAttribute('id', `${projTaskID}`);
+
+        let pTaskCheckbox = document.createElement('label')
+        pTaskCheckbox.classList.add('checkbox-label');
+        let pTaskInput = document.createElement('input');
+        pTaskInput.setAttribute('type', 'checkbox');
+        pTaskCheckbox.appendChild(input);
+        let pTaskSpan = document.createElement('span');
+        pTaskSpan.classList.add('checkbox-custom');
+        pTaskCheckbox.appendChild(span);
+
+
+        let pTitle = document.createElement('div');
+        pTitle.setAttribute('id', 'taskTitle');
+        pTitle.textContent = projTitle;
+
+        let pNotes = document.createElement('div');
+        pNotes.setAttribute('id', 'taskNotes');
+        pNotes.textContent = 'Notes:';
+
+        let pNotesContent = document.createElement('div');
+        pNotesContent.setAttribute('id', 'notes');
+        pNotesContent.textContent = projNotes;
+
+        if (checked === true) {
+            pTaskInput.checked = true
+            pTitle.style.textDecoration = 'line-through';
+        } else if (checked === false) {
+            pTaskInput.checked = false;
+            pTitle.style.textDecoration = 'none';
+        };
+
+        pTaskInput.addEventListener('click', () => {
+            retrieveProjects();
+            if (pTaskInput.checked === true) {
+                projectArray[projID].projectTaskList[projTaskID].completed = true;
+                pTitle.style.textDecoration = 'line-through';
+                storeProjects(projectArray);
+            } else if (pTaskInput.checked === false) {
+                projectArray[projID].projectTaskList[projTaskID].completed = false;
+                pTitle.style.textDecoration = 'none';
+                storeTasks(projectArray);
+            };
+        });
+    };
+
     const iterateTaskDisplay = (arr) => {
         if (arr === projectArray) {
             arr.forEach(element => {
@@ -457,6 +507,7 @@ const displayFunctions = (() => {
         iterateTaskDisplay,
         refreshTasksUI,
         showProjectUI,
+        showProjectTaskUI,
         removeProjectChildren
     };
 })();

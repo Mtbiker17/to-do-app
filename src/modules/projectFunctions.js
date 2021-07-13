@@ -20,22 +20,37 @@ class createProject {
     makeProjectTaskArray() {
         projectTaskList = [];
         return this.projectTaskList;
-    }
+    };
 };
 
 class createProjectTask {
-    constructor(title, notes) {
-        this.title = title
+    constructor(title, notes, projectTaskID, projID, completed) {
+        this.title = title;
         this.notes = notes;
-    }
+        this.projectTaskID = projectTaskID;
+        this.projID = projID;
+        this.completed = completed;
+    };
 
     getProjectTaskTitle() {
         return this.title;
-    }
+    };
 
     getProjectTaskNotes() {
         return this.notes;
+    };
+
+    getProjectTaskID() {
+        return this.projectTaskID;
+    };
+
+    getProjectID() {
+        return this.projID;
     }
+
+    getCompleted() {
+        return this.completed;
+    };
 
     /*saveProjectTaskArray(projectTaskNew) {
         projectTaskNew = localStorage.setItem('projectTaskNew', JSON.stringify(projectTaskNew));
