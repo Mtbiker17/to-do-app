@@ -214,6 +214,11 @@ body {
     padding-top: 10px;
 }
 
+#projectTaskContainer {
+    height: 100%;
+    padding-top: 10px;
+}
+
 #projectTaskCloseBtn {
     float: right;
     font-size: 30px;
@@ -230,6 +235,11 @@ body {
 
 #addProjectTask::before {
     content: url('./images/add.svg');
+    padding: 10px;
+}
+
+#toggleProjectTask::before {
+    content: url('./images/check.svg');
     padding: 10px;
 }
 

@@ -199,7 +199,7 @@ const projectModalController = (() => {
         projectTaskTitle.value = '';
         projectTaskNotes.value = '';
         projectTaskModal.style.display = 'none';
-        
+
     };
 
     submitProject.addEventListener('click', () => {
@@ -229,7 +229,7 @@ const projectModalController = (() => {
             alert('Please give task a title');
             return;
         };
-        const projectTaskNew = new createProjectTask(projectTaskTitle.value, projectTaskNotes.value, 
+        const projectTaskNew = new createProjectTask(projectTaskTitle.value, projectTaskNotes.value,
             projectArray[projectID].projectTaskList.length, projectID, false);
         projectArray[projectID].projectTaskList.push(projectTaskNew);
         storeProjects(projectArray);
@@ -249,6 +249,12 @@ const displayFunctions = (() => {
     const removeProjectChildren = () => {
         while (projectsContainer.lastElementChild) {
             projectsContainer.removeChild(projectsContainer.lastElementChild);
+        }
+    };
+
+    const removeProjectTaskChildren = () => {
+        while (projectTaskContainer.lastElementChild) {
+            projectTaskContainer.removeChild(projectTaskContainer.lastElementChild);
         }
     };
 
@@ -365,11 +371,11 @@ const displayFunctions = (() => {
         projectsContainer.appendChild(projectList);
 
         if (checked === true) {
-            projectInput.checked = true
+            projectInput.checked = true;
             projectTitle.style.textDecoration = 'line-through';
         } else if (checked === false) {
             projectInput.checked = false;
-            projectTitle.style.textDecoration = 'none'
+            projectTitle.style.textDecoration = 'none';
         };
 
         projectInput.addEventListener('click', () => {
@@ -391,24 +397,40 @@ const displayFunctions = (() => {
             console.log(projectArray[projectList.id]);
             taskButtonContainer.style.visibility = 'visible';
             navbarButtonController.showProjects();
+            //removeProjectTaskChildren();
 
             let projectTitleDisplay = document.createElement('div');
             let addProjectTask = document.createElement('div');
+            let toggleProjectTasks = document.createElement('div');
+
+            toggleProjectTasks.classList.add('taskControl');
+            toggleProjectTasks.setAttribute('id', `${projectID}`);
+            toggleProjectTasks.setAttribute('id', 'toggleProjectTask');
+            toggleProjectTasks.textContent = 'Toggle Completed Project Tasks';
+
 
             addProjectTask.classList.add('taskControl');
             addProjectTask.setAttribute('id', `${projectID}`);
             addProjectTask.setAttribute('id', 'addProjectTask');
             addProjectTask.textContent = 'Add Project Task';
 
-            projectTitleDisplay.classList.add('projectTitleDisplay')
+            projectTitleDisplay.classList.add('projectTitleDisplay');
             projectTitleDisplay.setAttribute('id', `${projectID}`);
             projectTitleDisplay.textContent = title;
+
             taskContainer.appendChild(projectTitleDisplay);
             taskContainer.appendChild(addProjectTask);
+            taskContainer.appendChild(toggleProjectTasks);
+
+            projectArray.forEach(element => {
+                element.projectTaskList.forEach(task => {
+                    displayFunctions.showProjectTaskUI(task.title, task.notes, task.projectTaskID, task.projID, task.completed);
+                });
+            });
 
             addProjectTask.addEventListener('click', () => {
                 projectTaskModal.style.display = 'flex';
-            })
+            });
         });
     };
 
@@ -421,10 +443,10 @@ const displayFunctions = (() => {
         pTaskCheckbox.classList.add('checkbox-label');
         let pTaskInput = document.createElement('input');
         pTaskInput.setAttribute('type', 'checkbox');
-        pTaskCheckbox.appendChild(input);
+        pTaskCheckbox.appendChild(pTaskInput);
         let pTaskSpan = document.createElement('span');
         pTaskSpan.classList.add('checkbox-custom');
-        pTaskCheckbox.appendChild(span);
+        pTaskCheckbox.appendChild(pTaskSpan);
 
 
         let pTitle = document.createElement('div');
@@ -438,6 +460,11 @@ const displayFunctions = (() => {
         let pNotesContent = document.createElement('div');
         pNotesContent.setAttribute('id', 'notes');
         pNotesContent.textContent = projNotes;
+
+        pTask.appendChild(pTaskCheckbox);
+        pTask.appendChild(pTitle);
+        pTask.appendChild(pNotes);
+        projectTaskContainer.appendChild(pTask);
 
         if (checked === true) {
             pTaskInput.checked = true
