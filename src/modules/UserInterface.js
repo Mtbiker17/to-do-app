@@ -55,7 +55,6 @@ const navbarButtonController = (() => {
     const showInbox = () => {
         currentTitle.textContent = 'Inbox';
         addTask.style.visibility = 'visible';
-        //addProjectTask.style.visibility = 'hidden';
         retrieveTasks();
         array = inboxArray;
         displayFunctions.removeChildren();
@@ -65,7 +64,6 @@ const navbarButtonController = (() => {
     const showDaily = () => {
         currentTitle.textContent = 'Today';
         addTask.style.visibility = 'visible';
-        // addProjectTask.style.visibility = 'hidden';
         array = dailyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
@@ -74,7 +72,6 @@ const navbarButtonController = (() => {
     const showWeekly = () => {
         currentTitle.textContent = 'Weekly';
         addTask.style.visibility = 'visible';
-        //addProjectTask.style.visibility = 'hidden';
         array = weeklyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
@@ -83,7 +80,6 @@ const navbarButtonController = (() => {
     const showMonthly = () => {
         currentTitle.textContent = 'Monthly';
         addTask.style.visibility = 'visible';
-        //addProjectTask.style.visibility = 'hidden';
         array = monthlyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
@@ -92,7 +88,6 @@ const navbarButtonController = (() => {
     const showImportant = () => {
         currentTitle.textContent = 'Important';
         addTask.style.visibility = 'visible';
-        // addProjectTask.style.visibility = 'hidden';
         array = importantArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
@@ -102,7 +97,6 @@ const navbarButtonController = (() => {
         retrieveProjects();
         currentTitle.textContent = 'Projects';
         addTask.style.visibility = 'hidden';
-        // addProjectTask.style.visibility = 'visible';
         array = projectArray;
         displayFunctions.removeProjectChildren();
         displayFunctions.removeChildren();
@@ -234,6 +228,12 @@ const projectModalController = (() => {
         projectArray[projectID].projectTaskList.push(projectTaskNew);
         storeProjects(projectArray);
         clearProjectTaskInfo();
+        displayFunctions.removeProjectTaskChildren();
+        projectArray.forEach(element => {
+                element.projectTaskList.forEach(task => {
+                    displayFunctions.showProjectTaskUI(task.title, task.notes, task.projectTaskID, task.projID, task.completed);
+                });
+            });
     });
 
     return { clearProjectInfo };
@@ -397,7 +397,7 @@ const displayFunctions = (() => {
             console.log(projectArray[projectList.id]);
             taskButtonContainer.style.visibility = 'visible';
             navbarButtonController.showProjects();
-            //removeProjectTaskChildren();
+            removeProjectTaskChildren();
 
             let projectTitleDisplay = document.createElement('div');
             let addProjectTask = document.createElement('div');
@@ -535,7 +535,8 @@ const displayFunctions = (() => {
         refreshTasksUI,
         showProjectUI,
         showProjectTaskUI,
-        removeProjectChildren
+        removeProjectChildren,
+        removeProjectTaskChildren
     };
 })();
 
