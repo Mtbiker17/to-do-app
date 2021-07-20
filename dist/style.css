@@ -210,7 +210,7 @@ body {
 }
 
 #taskContainer {
-    height: 100%;
+    height: fit-content;
     padding-top: 10px;
 }
 
