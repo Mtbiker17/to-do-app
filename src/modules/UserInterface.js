@@ -182,6 +182,7 @@ const taskModalController = (() => {
 const projectModalController = (() => {
     addProject.addEventListener('click', () => {
         projectModal.style.display = 'flex';
+        projectTaskContainer.style.visibility = 'hgid'
         navbarButtonController.showProjects();
     });
 
@@ -234,11 +235,9 @@ const projectModalController = (() => {
         storeProjects(projectArray);
         clearProjectTaskInfo();
         displayFunctions.removeProjectTaskChildren();
-        projectArray.forEach(element => {
-                element.projectTaskList.forEach(task => {
-                    displayFunctions.showProjectTaskUI(task.title, task.notes, task.projectTaskID, task.projID, task.completed);
-                });
-            });
+        projectArray[projectID].projectTaskList.forEach(task => {
+            displayFunctions.showProjectTaskUI(task.title, task.notes, task.projectTaskID, task.projID, task.completed);
+        });
     });
 
     return { clearProjectInfo };
@@ -403,7 +402,7 @@ const displayFunctions = (() => {
             taskButtonContainer.style.visibility = 'visible';
             projectTaskContainer.style.visibility = 'visible';
             navbarButtonController.showProjects();
-            removeProjectTaskChildren();
+            displayFunctions.removeProjectTaskChildren();
 
             let projectTitleDisplay = document.createElement('div');
             let addProjectTask = document.createElement('div');
@@ -428,10 +427,8 @@ const displayFunctions = (() => {
             taskContainer.appendChild(addProjectTask);
             taskContainer.appendChild(toggleProjectTasks);
 
-            projectArray.forEach(element => {
-                element.projectTaskList.forEach(task => {
-                    displayFunctions.showProjectTaskUI(task.title, task.notes, task.projectTaskID, task.projID, task.completed);
-                });
+            projectArray[projectList.id].projectTaskList.forEach(task => {
+                displayFunctions.showProjectTaskUI(task.title, task.notes, task.projectTaskID, task.projID, task.completed);
             });
 
             addProjectTask.addEventListener('click', () => {
