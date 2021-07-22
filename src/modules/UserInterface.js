@@ -406,13 +406,6 @@ const displayFunctions = (() => {
 
             let projectTitleDisplay = document.createElement('div');
             let addProjectTask = document.createElement('div');
-            let toggleProjectTasks = document.createElement('div');
-
-            toggleProjectTasks.classList.add('taskControl');
-            toggleProjectTasks.setAttribute('id', `${projectID}`);
-            toggleProjectTasks.setAttribute('id', 'toggleProjectTask');
-            toggleProjectTasks.textContent = 'Toggle Completed Project Tasks';
-
 
             addProjectTask.classList.add('taskControl');
             addProjectTask.setAttribute('id', `${projectID}`);
@@ -425,9 +418,9 @@ const displayFunctions = (() => {
 
             taskContainer.appendChild(projectTitleDisplay);
             taskContainer.appendChild(addProjectTask);
-            taskContainer.appendChild(toggleProjectTasks);
 
             projectArray[projectList.id].projectTaskList.forEach(task => {
+                console.log(task.completed);
                 displayFunctions.showProjectTaskUI(task.title, task.notes, task.projectTaskID, task.projID, task.completed);
             });
 
@@ -486,7 +479,7 @@ const displayFunctions = (() => {
             } else if (pTaskInput.checked === false) {
                 projectArray[projID].projectTaskList[projTaskID].completed = false;
                 pTitle.style.textDecoration = 'none';
-                storeTasks(projectArray);
+                storeProjects(projectArray);
             };
         });
     };
