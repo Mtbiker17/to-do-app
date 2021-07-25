@@ -182,7 +182,7 @@ const taskModalController = (() => {
 const projectModalController = (() => {
     addProject.addEventListener('click', () => {
         projectModal.style.display = 'flex';
-        projectTaskContainer.style.visibility = 'hgid'
+        projectTaskContainer.style.visibility = 'hidden'
         navbarButtonController.showProjects();
     });
 
@@ -422,7 +422,6 @@ const displayFunctions = (() => {
         });
 
         projectList.addEventListener('click', () => {
-            console.log(projectArray[projectList.id]);
             taskButtonContainer.style.visibility = 'visible';
             projectTaskContainer.style.visibility = 'visible';
             navbarButtonController.showProjects();
@@ -495,13 +494,14 @@ const displayFunctions = (() => {
 
         pTaskInput.addEventListener('click', () => {
             retrieveProjects();
-            console.log(projID)
+            let id = document.getElementsByClassName('projectTitleDisplay')[0].id;
+            console.log(projTaskID)
             if (pTaskInput.checked === true) {
-                projectArray[projID].projectTaskList[projTaskID].completed = true;
+                projectArray[id].projectTaskList[projTaskID].completed = true;
                 pTitle.style.textDecoration = 'line-through';
                 storeProjects(projectArray);
             } else if (pTaskInput.checked === false) {
-                projectArray[projID].projectTaskList[projTaskID].completed = false;
+                projectArray[id].projectTaskList[projTaskID].completed = false;
                 pTitle.style.textDecoration = 'none';
                 storeProjects(projectArray);
             };
