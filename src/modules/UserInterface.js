@@ -56,6 +56,7 @@ const navbarButtonController = (() => {
         currentTitle.textContent = 'Inbox';
         addTask.style.visibility = 'visible';
         projectTaskContainer.style.visibility = 'hidden';
+        remove.textContent = 'Remove Completed Tasks';
         retrieveTasks();
         array = inboxArray;
         displayFunctions.removeChildren();
@@ -66,6 +67,7 @@ const navbarButtonController = (() => {
         currentTitle.textContent = 'Today';
         addTask.style.visibility = 'visible';
         projectTaskContainer.style.visibility = 'hidden';
+        remove.textContent = 'Remove Completed Tasks';
         array = dailyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
@@ -75,6 +77,7 @@ const navbarButtonController = (() => {
         currentTitle.textContent = 'Weekly';
         addTask.style.visibility = 'visible';
         projectTaskContainer.style.visibility = 'hidden';
+        remove.textContent = 'Remove Completed Tasks';
         array = weeklyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
@@ -84,6 +87,7 @@ const navbarButtonController = (() => {
         currentTitle.textContent = 'Monthly';
         addTask.style.visibility = 'visible';
         projectTaskContainer.style.visibility = 'hidden';
+        remove.textContent = 'Remove Completed Tasks';
         array = monthlyArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
@@ -93,6 +97,7 @@ const navbarButtonController = (() => {
         currentTitle.textContent = 'Important';
         addTask.style.visibility = 'visible';
         projectTaskContainer.style.visibility = 'hidden';
+        remove.textContent = 'Remove Completed Tasks';
         array = importantArray;
         displayFunctions.removeChildren();
         displayFunctions.iterateTaskDisplay(array);
@@ -102,6 +107,7 @@ const navbarButtonController = (() => {
         retrieveProjects();
         currentTitle.textContent = 'Projects';
         addTask.style.visibility = 'hidden';
+        remove.textContent = 'Remove Completed Projects';
         array = projectArray;
         displayFunctions.removeProjectChildren();
         displayFunctions.removeChildren();
