@@ -51,22 +51,6 @@ class createProjectTask {
     getCompleted() {
         return this.completed;
     };
-
-    /*saveProjectTaskArray(projectTaskNew) {
-        projectTaskNew = localStorage.setItem('projectTaskNew', JSON.stringify(projectTaskNew));
-        return this.projectTaskList
-    }
-
-    getProjectTaskArray(projectTask) {
-        projectTask = JSON.parse(localStorage.getItem(`${this.projectTaskList}`));
-        return this.projectTask;
-    }
-
-    addTasktoProjectArray(projectTask) {
-        projectTaskList.push(projectTask);
-        projectTask = localStorage.setItem(this.projectTaskList, JSON.stringify(this.projectTaskList));
-        return this.projectTask;
-    }*/
 };
 
 export { createProject, createProjectTask, projectArray };

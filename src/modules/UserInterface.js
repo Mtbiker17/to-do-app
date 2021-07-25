@@ -262,16 +262,28 @@ const displayFunctions = (() => {
         }
     };
 
+    const resetArrays = () => {
+        dailyArray = [];
+        weeklyArray = [];
+        monthlyArray = [];
+        importantArray = [];
+    };
+
     const refreshTasksUI = (nav) => {
         if (nav === 'Inbox') {
+            removeChildren();
             navbarButtonController.showInbox();
         } else if (nav === 'Today') {
+            removeChildren()
             navbarButtonController.showDaily();
         } else if (nav === 'Weekly') {
+            removeChildren()
             navbarButtonController.showWeekly();
         } else if (nav === 'Monthly') {
+            removeChildren()
             navbarButtonController.showMonthly();
         } else if (nav === 'Important') {
+            removeChildren()
             navbarButtonController.showImportant();
         } else if (nav === 'Projects') {
             taskButtonContainer.style.visibility = 'visible';
@@ -312,8 +324,20 @@ const displayFunctions = (() => {
 
         let dateInput = document.createElement('input');
         dateInput.setAttribute('type', 'date');
-        dateInput.setAttribute('id', 'date');
+        dateInput.setAttribute('id', id);
         dateInput.value = `${date}`;
+
+        dateInput.addEventListener("change", () => {
+            let newDate = dateInput.value;
+            let inputID = dateInput.id;
+            inboxArray[inputID].dueDate = newDate;
+            resetArrays();
+            storeTasks(inboxArray);
+            inboxArray.forEach(task => {
+                organizeTaskArray(task);
+            });
+            displayFunctions.refreshTasksUI(currentTitle.textContent);
+        });
 
         task.appendChild(checkbox);
         task.appendChild(taskTitle);
@@ -419,8 +443,7 @@ const displayFunctions = (() => {
             taskContainer.appendChild(projectTitleDisplay);
             taskContainer.appendChild(addProjectTask);
 
-            projectArray[projectList.id].projectTaskList.forEach(task => {
-                console.log(task.completed);
+            projectArray[projectList.id].projectTaskList.forEach(task => {      
                 displayFunctions.showProjectTaskUI(task.title, task.notes, task.projectTaskID, task.projID, task.completed);
             });
 
@@ -472,6 +495,7 @@ const displayFunctions = (() => {
 
         pTaskInput.addEventListener('click', () => {
             retrieveProjects();
+            console.log(projID)
             if (pTaskInput.checked === true) {
                 projectArray[projID].projectTaskList[projTaskID].completed = true;
                 pTitle.style.textDecoration = 'line-through';
