@@ -2,91 +2,91 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <title>To-Do App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <title>To-Do App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
-    <div id='content'>
-        <div class='banner'>
-            <img src="./images/todologo.svg" height="80px" width="80px" alt="logo" class="bannerItems">
-            <div class='bannerItems'>To-Do-ly
-                <div class='slogan'>life is chaotic, organize it</div>
-            </div>
-        </div>
-        <div class='main'>
-            <div class='modal' id='taskModal'>
-                <div class="modal-content">
-                    <span id="closeBtn">&times;</span>
-                    <div>Title</div>
-                    <input class='modal-input' id='submitTitle'>
-                    <div>Notes</div>
-                    <input class='modal-input' id='submitNotes'>
-                    <div>Task Priority</div>
-                    <select class='modal-input' id='submitPriority'>Priority
-                        <option value='standard'>Standard</option>
-                        <option value='Important'>Important</option>
-                    </select>
-                    <div>Due Date</div>
-                    <input type="date" id='modaldateinput' class='modal-input'><br>
-                    <button id='submitTask'>Add Task</button>
-                </div>
-            </div>
-            <div class='modal' id='projectModal'>
-                <div class="modal-content">
-                    <span id="projectCloseBtn">&times;</span>
-                    <div>Project Title</div>
-                    <input class='modal-input' id='submitProjectTitle'>
-                    <button id='submitProject'>Add Project</button>
-                </div>
-            </div>
-            <div class='modal' id='projectTaskModal'>
-                <div class="modal-content">
-                    <span id="projectTaskCloseBtn">&times;</span>
-                    <div>Title</div>
-                    <input class='modal-input' id='projectTaskTitle'>
-                    <div>Notes</div>
-                    <input class='modal-input' id='projectTaskNotes'>
-                    <button id='submitProjectTask'>Add Task</button>
-                </div>
-            </div>
-            <div id='navbar'>
-                <div id='mainNav'>
-                    <div class='mainNavItems' id='inbox'>Inbox</div>
-                    <div class='mainNavItems' id='today'>Today</div>
-                    <div class='mainNavItems' id='week'>Week</div>
-                    <div class='mainNavItems' id='month'>Month</div>
-                    <div class='mainNavItems' id='important'>Important</div>
-                </div>
-                <div id='projectNavContainer'>
-                    <div id='projectHeader'>
-                        <div class='mainNavItems' id='projectTitle'>Projects</div>
-                        <div><img src='./images/right.svg' id='arrow'></div>
-                    </div>
-                    <div id='projectsContainer'>
-                    </div>
-                </div>
-            </div>
-            <div id='userInterface'>
-                <div id='currentTitle'>Inbox</div>
-                <div id='taskButtonContainer'>
-                    <div id='addTask' class='taskControl'>Add Task</div>
-                    <div id='addProject' class='taskControl'>Add Project</div>
-                    <div id='remove' class='taskControl'>Remove Completed Tasks</div>
-                </div>
-                <div id='taskContainer'></div>
-                <div id='projectTaskContainer'></div>
-            </div>
-        </div>
+  <div id='content'>
+    <div class='banner'>
+      <img src="./images/todologo.svg" height="80px" width="80px" alt="logo" class="bannerItems">
+      <div class='bannerItems'>To-Do-ly
+        <div class='slogan'>life is chaotic, organize it</div>
+      </div>
     </div>
+    <div class='main'>
+      <div class='modal' id='taskModal'>
+        <div class="modal-content">
+          <span id="closeBtn">&times;</span>
+          <div>Title</div>
+          <input class='modal-input' id='submitTitle'>
+          <div>Notes</div>
+          <input class='modal-input' id='submitNotes'>
+          <div>Task Priority</div>
+          <select class='modal-input' id='submitPriority'>Priority
+            <option value='standard'>Standard</option>
+            <option value='Important'>Important</option>
+          </select>
+          <div>Due Date</div>
+          <input type="date" id='modaldateinput' class='modal-input'><br>
+          <button id='submitTask'>Add Task</button>
+        </div>
+      </div>
+      <div class='modal' id='projectModal'>
+        <div class="modal-content">
+          <span id="projectCloseBtn">&times;</span>
+          <div>Project Title</div>
+          <input class='modal-input' id='submitProjectTitle'>
+          <button id='submitProject'>Add Project</button>
+        </div>
+      </div>
+      <div class='modal' id='projectTaskModal'>
+        <div class="modal-content">
+          <span id="projectTaskCloseBtn">&times;</span>
+          <div>Title</div>
+          <input class='modal-input' id='projectTaskTitle'>
+          <div>Notes</div>
+          <input class='modal-input' id='projectTaskNotes'>
+          <button id='submitProjectTask'>Add Task</button>
+        </div>
+      </div>
+      <div id='navbar'>
+        <div id='mainNav'>
+          <div class='mainNavItems' id='inbox'>Inbox</div>
+          <div class='mainNavItems' id='today'>Today</div>
+          <div class='mainNavItems' id='week'>Week</div>
+          <div class='mainNavItems' id='month'>Month</div>
+          <div class='mainNavItems' id='important'>Important</div>
+        </div>
+        <div id='projectNavContainer'>
+          <div id='projectHeader'>
+            <div class='mainNavItems' id='projectTitle'>Projects</div>
+            <div><img src='./images/right.svg' id='arrow'></div>
+          </div>
+          <div id='projectsContainer'>
+          </div>
+        </div>
+      </div>
+      <div id='userInterface'>
+        <div id='currentTitle'>Inbox</div>
+        <div id='taskButtonContainer'>
+          <div id='addTask' class='taskControl'>Add Task</div>
+          <div id='addProject' class='taskControl'>Add Project</div>
+          <div id='remove' class='taskControl'>Remove Completed Tasks</div>
+        </div>
+        <div id='taskContainer'></div>
+        <div id='projectTaskContainer'></div>
+      </div>
     </div>
-    <script src="main.js"></script>
+  </div>
+  </div>
+  <script src="main.js"></script>
 </body>
 
 </html>
