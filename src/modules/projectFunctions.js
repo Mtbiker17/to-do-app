@@ -6,22 +6,22 @@ class createProject {
     this.projectID = projectID;
     this.completed = completed;
     this.projectTaskList = projectTaskList;
-  };
+  }
 
   getTitle() {
     return this.title;
-  };
+  }
 
   createProjectID() {
     console.log('hi');
     return this.projectID;
-  };
+  }
 
   makeProjectTaskArray() {
     projectTaskList = [];
     return this.projectTaskList;
-  };
-};
+  }
+}
 
 class createProjectTask {
   constructor(title, notes, projectTaskID, projID, completed) {
@@ -30,19 +30,19 @@ class createProjectTask {
     this.projectTaskID = projectTaskID;
     this.projID = projID;
     this.completed = completed;
-  };
+  }
 
   getProjectTaskTitle() {
     return this.title;
-  };
+  }
 
   getProjectTaskNotes() {
     return this.notes;
-  };
+  }
 
   getProjectTaskID() {
     return this.projectTaskID;
-  };
+  }
 
   getProjectID() {
     return this.projID;
@@ -50,7 +50,7 @@ class createProjectTask {
 
   getCompleted() {
     return this.completed;
-  };
-};
+  }
+}
 
 export { createProject, createProjectTask, projectArray };

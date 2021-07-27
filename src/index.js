@@ -22,6 +22,6 @@ function refreshAt(hours, minutes, seconds) {
   then.setSeconds(seconds);
 
   var timeout = (then.getTime() - now.getTime());
-  setTimeout(function () { window.location.reload(); }, timeout)
-};
+  setTimeout(function () { window.location.reload(); }, timeout);
+}
 refreshAt(24, 0, 0);

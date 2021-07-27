@@ -19,52 +19,52 @@ class createTask {
     this.notes = notes;
     this.taskID = taskID;
     this.completed = completed;
-  };
+  }
 
   getTitle() {
     return this.title;
-  };
+  }
 
   setDueDate() {
     return this.dueDate;
-  };
+  }
 
   setPriority() {
     return this.priority;
-  };
+  }
 
   addNotes() {
     return this.notes;
-  };
+  }
 
   createTaskID() {
     return this.id;
-  };
+  }
 
   checkCompleted() {
     return this.completed;
-  };
-};
+  }
+}
 
 function organizeTaskArray(task) {
 
   if (isToday(parseISO(task.dueDate)) === true) {
     dailyArray.push(task);
-  };
+  }
 
   if (isThisWeek(parseISO(task.dueDate)) === true) {
     weeklyArray.push(task);
-  };
+  }
 
   if (isThisMonth(parseISO(task.dueDate)) === true) {
     monthlyArray.push(task);
-  };
+  }
 
   if (task.priority === 'Important') {
     importantArray.push(task);
-  };
+  }
   return { dailyArray, weeklyArray, monthlyArray, importantArray };
-};
+}
 
 function updateTaskArrays(taskCompleted, inboxArray, id) {
   inboxArray.forEach(task => {

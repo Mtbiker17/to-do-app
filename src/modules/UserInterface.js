@@ -20,7 +20,7 @@ import {
   retrieveTasks,
   storeProjects,
   retrieveProjects,
-} from './storageFunctions.js'
+} from './storageFunctions.js';
 
 import {
   format,
@@ -43,12 +43,12 @@ function initializeHomepage() {
   projectArray.forEach(savedProject => {
     savedProject.projectID = projectIndex;
     projectIndex++;
-    storeProjects(projectArray)
+    storeProjects(projectArray);
   });
 
   displayFunctions.iterateTaskDisplay(inboxArray);
   displayFunctions.iterateTaskDisplay(projectArray);
-};
+}
 
 const navbarButtonController = (() => {
   let array;
@@ -159,12 +159,12 @@ const taskModalController = (() => {
     if (submitTitle.value === '') {
       alert("Task must have a title");
       return;
-    };
+    }
 
     if (modaldateinput.value === '') {
       alert('Please enter a due date for this task');
       return;
-    };
+    }
 
     let date = format(parseISO(modaldateinput.value), 'MM/dd/yyyy');
     let currentDate = format(new Date(), 'MM/dd/yyyy');
@@ -188,7 +188,7 @@ const taskModalController = (() => {
 const projectModalController = (() => {
   addProject.addEventListener('click', () => {
     projectModal.style.display = 'flex';
-    projectTaskContainer.style.visibility = 'hidden'
+    projectTaskContainer.style.visibility = 'hidden';
     navbarButtonController.showProjects();
   });
 
@@ -212,18 +212,18 @@ const projectModalController = (() => {
     if (submitProjectTitle.value === '') {
       alert("Project must have a title");
       return;
-    };
+    }
     projectsContainer.style.visibility = 'hidden';
-    arrow.classList.remove('arrowDown')
+    arrow.classList.remove('arrowDown');
     if (projectsContainer.style.visibility !== 'visible') {
       arrow.classList.add('arrowDown');
-      projectsContainer.style.visibility = 'visible'
+      projectsContainer.style.visibility = 'visible';
     } else {
       projectsContainer.style.visibility = 'hidden';
-    };
+    }
     retrieveProjects();
     const project = new createProject(`${submitProjectTitle.value}`, `${projectArray.length}`, false, []);
-    projectArray.push(project)
+    projectArray.push(project);
     storeProjects(projectArray);
     clearProjectInfo();
     displayFunctions.refreshTasksUI(currentTitle.textContent);
@@ -234,7 +234,7 @@ const projectModalController = (() => {
     if (projectTaskTitle.value === '') {
       alert('Please give task a title');
       return;
-    };
+    }
     const projectTaskNew = new createProjectTask(projectTaskTitle.value, projectTaskNotes.value,
       projectArray[projectID].projectTaskList.length, projectID, false);
     projectArray[projectID].projectTaskList.push(projectTaskNew);
@@ -280,16 +280,16 @@ const displayFunctions = (() => {
       removeChildren();
       navbarButtonController.showInbox();
     } else if (nav === 'Today') {
-      removeChildren()
+      removeChildren();
       navbarButtonController.showDaily();
     } else if (nav === 'Weekly') {
-      removeChildren()
+      removeChildren();
       navbarButtonController.showWeekly();
     } else if (nav === 'Monthly') {
-      removeChildren()
+      removeChildren();
       navbarButtonController.showMonthly();
     } else if (nav === 'Important') {
-      removeChildren()
+      removeChildren();
       navbarButtonController.showImportant();
     } else if (nav === 'Projects') {
       taskButtonContainer.style.visibility = 'visible';
@@ -302,7 +302,7 @@ const displayFunctions = (() => {
     task.classList.add('task');
     task.setAttribute('id', `${id}`);
 
-    let checkbox = document.createElement('label')
+    let checkbox = document.createElement('label');
     checkbox.classList.add('checkbox-label');
     let input = document.createElement('input');
     input.setAttribute('type', 'checkbox');
@@ -354,18 +354,18 @@ const displayFunctions = (() => {
     taskContainer.appendChild(task);
 
     if (checked === true) {
-      taskTitle.style.textDecoration = 'line-through'
-      input.checked = true
+      taskTitle.style.textDecoration = 'line-through';
+      input.checked = true;
     } else if (checked === false) {
       input.checked = false;
-      taskTitle.style.textDecoration = 'none'
-    };
+      taskTitle.style.textDecoration = 'none';
+    }
     if (priority === 'Important') {
       taskTitle.classList.add('pseudoImportant');
-    };
+    }
 
     input.addEventListener('click', () => {
-      retrieveTasks()
+      retrieveTasks();
       if (input.checked === true) {
         inboxArray[id].completed = true;
         taskTitle.style.textDecoration = 'line-through';
@@ -376,7 +376,7 @@ const displayFunctions = (() => {
         taskTitle.style.textDecoration = 'none';
         storeTasks(inboxArray);
         updateTaskArrays(false, inboxArray, id);
-      };
+      }
     });
   };
 
@@ -385,7 +385,7 @@ const displayFunctions = (() => {
     projectList.setAttribute('id', projectID);
     projectList.classList.add('projectList');
 
-    let projectCheckbox = document.createElement('label')
+    let projectCheckbox = document.createElement('label');
     projectCheckbox.classList.add('checkbox-label');
     let projectInput = document.createElement('input');
     projectInput.setAttribute('type', 'checkbox');
@@ -398,7 +398,7 @@ const displayFunctions = (() => {
     let projectTitle = document.createElement('div');
     projectTitle.setAttribute('id', projectID);
     projectTitle.textContent = title;
-    projectTitle.classList.add('projectTitle')
+    projectTitle.classList.add('projectTitle');
 
     projectList.appendChild(projectCheckbox);
     projectList.appendChild(projectTitle);
@@ -410,7 +410,7 @@ const displayFunctions = (() => {
     } else if (checked === false) {
       projectInput.checked = false;
       projectTitle.style.textDecoration = 'none';
-    };
+    }
 
     projectInput.addEventListener('click', () => {
       retrieveProjects();
@@ -424,7 +424,7 @@ const displayFunctions = (() => {
         projectTitle.style.textDecoration = 'none';
         storeProjects(projectArray);
         refreshTasksUI(currentTitle.textContent);
-      };
+      }
     });
 
     projectList.addEventListener('click', () => {
@@ -463,7 +463,7 @@ const displayFunctions = (() => {
     pTask.classList.add('task');
     pTask.setAttribute('id', `${projTaskID}`);
 
-    let pTaskCheckbox = document.createElement('label')
+    let pTaskCheckbox = document.createElement('label');
     pTaskCheckbox.classList.add('checkbox-label');
     let pTaskInput = document.createElement('input');
     pTaskInput.setAttribute('type', 'checkbox');
@@ -491,17 +491,16 @@ const displayFunctions = (() => {
     projectTaskContainer.appendChild(pTask);
 
     if (checked === true) {
-      pTaskInput.checked = true
+      pTaskInput.checked = true;
       pTitle.style.textDecoration = 'line-through';
     } else if (checked === false) {
       pTaskInput.checked = false;
       pTitle.style.textDecoration = 'none';
-    };
+    }
 
     pTaskInput.addEventListener('click', () => {
       retrieveProjects();
       let id = document.getElementsByClassName('projectTitleDisplay')[0].id;
-      console.log(projTaskID)
       if (pTaskInput.checked === true) {
         projectArray[id].projectTaskList[projTaskID].completed = true;
         pTitle.style.textDecoration = 'line-through';
@@ -510,7 +509,7 @@ const displayFunctions = (() => {
         projectArray[id].projectTaskList[projTaskID].completed = false;
         pTitle.style.textDecoration = 'none';
         storeProjects(projectArray);
-      };
+      }
     });
   };
 
@@ -518,9 +517,9 @@ const displayFunctions = (() => {
     if (arr === projectArray) {
       arr.forEach(element => {
         showProjectUI(element.title, element.projectID, element.completed);
-      })
+      });
       return;
-    };
+    }
     arr.forEach(element => {
       showTaskUI(element.title, element.notes, element.dueDate, element.taskID, element.completed, element.priority);
     });
@@ -532,13 +531,13 @@ const displayFunctions = (() => {
     inboxArray.forEach(task => {
       if (task.completed === true) {
         inboxArray.splice(task.taskID, 1);
-      };
+      }
     });
 
     projectArray.forEach(projectTask => {
       if (projectTask.completed === true) {
         projectArray.splice(projectTask.projectID, 1);
-      };
+      }
     });
     storeTasks(inboxArray);
     storeProjects(projectArray);
@@ -546,12 +545,12 @@ const displayFunctions = (() => {
   });
 
   arrow.addEventListener('click', () => {
-    arrow.classList.toggle('arrowDown')
+    arrow.classList.toggle('arrowDown');
     if (projectsContainer.style.visibility !== 'visible') {
-      projectsContainer.style.visibility = 'visible'
+      projectsContainer.style.visibility = 'visible';
     } else {
       projectsContainer.style.visibility = 'hidden';
-    };
+    }
   });
 
   return {
