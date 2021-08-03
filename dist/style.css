@@ -1,71 +1,71 @@
-html { 
-    background-color: #36393F;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
+html {
+  background-color: #36393f;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-    margin: 0;
+  margin: 0;
 }
 
 .content {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .main {
-    display: flex;
-    flex-direction: row;
-    margin-top: 100px;
-    width: 100%;
-    text-align: center;
+  display: flex;
+  flex-direction: row;
+  margin-top: 100px;
+  width: 100%;
+  text-align: center;
 }
 
 .modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1; 
-    left: 30%;
-    top: 30%;
-    width: 40%; 
-    height: 40%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(255, 255, 255); 
-    border-radius: 20px;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 30%;
+  top: 30%;
+  width: 40%;
+  height: 40%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255);
+  border-radius: 20px;
 }
 
 .modal-content {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    text-align: left;
-    padding: 20px;
-    font-family: 'PT Sans', sans-serif;
-    font-size: 160%;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  padding: 20px;
+  font-family: "PT Sans", sans-serif;
+  font-size: 160%;
+  width: 100%;
 }
 
 .modal-input {
-    border:none;
-    border-bottom: 1px solid black;
-    padding: 5px 10px;
-    outline: none;
-    background-color: white;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 5px 10px;
+  outline: none;
+  background-color: white;
 }
 
 .modal-input:hover {
-    background-color: rgba(45, 200, 111, 0.3);
-    transition: all 0.4s ease 0s;
+  background-color: rgba(45, 200, 111, 0.3);
+  transition: all 0.4s ease 0s;
 }
 
 #closeBtn {
-    float: right;
-    font-size: 30px;
-    font-weight: bold;
-    margin-left: 95%;
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 95%;
 }
 
 #closeBtn:hover,
@@ -76,10 +76,10 @@ body {
 }
 
 #projectCloseBtn {
-    float: right;
-    font-size: 30px;
-    font-weight: bold;
-    margin-left: 95%;
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 95%;
 }
 
 #projectCloseBtn:hover,
@@ -90,140 +90,140 @@ body {
 }
 
 #submitTask {
-    width: 30%;
-    margin: auto;
-    border: none;
-    text-transform: uppercase;
-	text-decoration: none;
-	background: #ffffff;
-	padding: 15px;
-	border: 3px solid #494949;
-	display: inline-block;
-	transition: all 0.4s ease 0s;
+  width: 30%;
+  margin: auto;
+  border: none;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 15px;
+  border: 3px solid #494949;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
 }
 
 #submitTask:hover {
-    color: black;
-	background: rgba(45, 200, 111, 0.3);
-	border-color: rgba(45, 200, 111, 0.3);
-	transition: all 0.4s ease 0s;
+  color: black;
+  background: rgba(45, 200, 111, 0.3);
+  border-color: rgba(45, 200, 111, 0.3);
+  transition: all 0.4s ease 0s;
 }
 
 #submitProject {
-    width: 30%;
-    margin: auto;
-    border: none;
-    text-transform: uppercase;
-	text-decoration: none;
-	background: #ffffff;
-	padding: 15px;
-	border: 3px solid #494949;
-	display: inline-block;
-	transition: all 0.4s ease 0s;
+  width: 30%;
+  margin: auto;
+  border: none;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 15px;
+  border: 3px solid #494949;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
 }
 
 #submitProject:hover {
-    color: black;
-	background: rgba(45, 200, 111, 0.3);
-	border-color: rgba(45, 200, 111, 0.3);
-	transition: all 0.4s ease 0s;
+  color: black;
+  background: rgba(45, 200, 111, 0.3);
+  border-color: rgba(45, 200, 111, 0.3);
+  transition: all 0.4s ease 0s;
 }
 
 #submitProjectTask {
-    width: 30%;
-    margin: auto;
-    border: none;
-    text-transform: uppercase;
-	text-decoration: none;
-	background: #ffffff;
-	padding: 15px;
-	border: 3px solid #494949;
-	display: inline-block;
-	transition: all 0.4s ease 0s;
+  width: 30%;
+  margin: auto;
+  border: none;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 15px;
+  border: 3px solid #494949;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
 }
 
 #submitProjectTask:hover {
-    width: 30%;
-    color: black;
-	background: rgba(45, 200, 111, 0.3);
-	border-color: rgba(45, 200, 111, 0.3);
-	transition: all 0.4s ease 0s;
+  width: 30%;
+  color: black;
+  background: rgba(45, 200, 111, 0.3);
+  border-color: rgba(45, 200, 111, 0.3);
+  transition: all 0.4s ease 0s;
 }
 
 #navbar {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    background-color: #2F3136;
-    width: 460px;
-    height: 1200px;
-    font-family: 'PT Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  background-color: #2f3136;
+  width: 460px;
+  height: 1200px;
+  font-family: "PT Sans", sans-serif;
 }
 
 #userInterface {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    padding: 25px;
-    text-align: left;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding: 25px;
+  text-align: left;
 }
 
 #currentTitle {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-family:'PT sans', sans-serif;
-    color: #2DC86F;
-    font-size: 275%;
-    padding: 20px;
-    transition-duration: 1s;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: "PT sans", sans-serif;
+  color: #2dc86f;
+  font-size: 275%;
+  padding: 20px;
+  transition-duration: 1s;
 }
 
 .taskControl {
-    font-size: 150%;
-    justify-content: center;
-    font-family: 'PT San', sans-serif;
-    color: white;
-    width: fit-content;
-    border-radius: 5px;
-    padding: 5px;
+  font-size: 150%;
+  justify-content: center;
+  font-family: "PT San", sans-serif;
+  color: white;
+  width: fit-content;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .taskControl:hover {
-    background-color: #6a6e77 ;
-    transition-duration: 0.5s;
+  background-color: #6a6e77;
+  transition-duration: 0.5s;
 }
 
 #remove::before {
-    content:url('./images/remove.svg');
-    padding: 10px;
+  content: url("./images/remove.svg");
+  padding: 10px;
 }
 
 #remove {
-    width: 350px;
+  width: 350px;
 }
 
 #addTask::before {
-    content: url('./images/add.svg');
-    padding: 10px;
+  content: url("./images/add.svg");
+  padding: 10px;
 }
 
 #taskContainer {
-    height: fit-content;
-    padding-top: 10px;
+  height: fit-content;
+  padding-top: 10px;
 }
 
 #projectTaskContainer {
-    height: 100%;
-    padding-top: 10px;
+  height: 100%;
+  padding-top: 10px;
 }
 
 #projectTaskCloseBtn {
-    float: right;
-    font-size: 30px;
-    font-weight: bold;
-    margin-left: 95%; 
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 95%;
 }
 
 #projectTaskCloseBtn:hover,
@@ -234,317 +234,314 @@ body {
 }
 
 #addProjectTask::before {
-    content: url('./images/add.svg');
-    padding: 10px;
+  content: url("./images/add.svg");
+  padding: 10px;
 }
 
 #toggleProjectTask::before {
-    content: url('./images/check.svg');
-    padding: 10px;
+  content: url("./images/check.svg");
+  padding: 10px;
 }
 
 .task {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    color: #2DC86F;
-    font-size: larger;
-    height: 40px;
-    padding: 5px;
-    height: fit-content;
-    font-family: 'PT Sans', sans-serif;
-    max-width: 1100px;
-    border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #2dc86f;
+  font-size: larger;
+  height: 40px;
+  padding: 5px;
+  height: fit-content;
+  font-family: "PT Sans", sans-serif;
+  max-width: 1100px;
+  border-radius: 20px;
 }
 
 .task:hover {
-    background-color: #6a6e77;
-    border-radius: 20px;
+  background-color: #6a6e77;
+  border-radius: 20px;
 }
 
 .checkbox-label input {
-    opacity: 0;
+  opacity: 0;
 }
 
 .checkbox-label .checkbox-custom {
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    margin-top: 22px;
-    background-color: transparent;
-    border-radius: 5px;
-    border: 2px solid white;
-    transition: all 0.3s ease-out;
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
-    -ms-transition: all 0.3s ease-out;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  margin-top: 22px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid white;
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
 }
 
 .checkbox-label .checkbox-custom::after {
-    position: absolute;
-    content: "";
-    left: 12px;
-    top: 12px;
-    height: 0px;
-    width: 0px;
-    border-radius: 5px;
-    border: solid #36393F;
-    border-width: 0 3px 3px 0;
-    transition: all 0.3s ease-out;
-    -webkit-transform: rotate(0deg) scale(0);
-    -ms-transform: rotate(0deg) scale(0);
-    transform: rotate(0deg) scale(0);
-    opacity: 1;
+  position: absolute;
+  content: "";
+  left: 12px;
+  top: 12px;
+  height: 0px;
+  width: 0px;
+  border-radius: 5px;
+  border: solid #36393f;
+  border-width: 0 3px 3px 0;
+  transition: all 0.3s ease-out;
+  -webkit-transform: rotate(0deg) scale(0);
+  -ms-transform: rotate(0deg) scale(0);
+  transform: rotate(0deg) scale(0);
+  opacity: 1;
 }
 
 .checkbox-label input:checked ~ .checkbox-custom::after {
-    -webkit-transform: rotate(45deg) scale(1);
-    -ms-transform: rotate(45deg) scale(1);
-    transform: rotate(45deg) scale(1);
-    opacity: 1;
-    left: 8px;
-    top: 3px;
-    width: 6px;
-    height: 12px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    background-color: transparent;
-    border-radius: 0;
+  -webkit-transform: rotate(45deg) scale(1);
+  -ms-transform: rotate(45deg) scale(1);
+  transform: rotate(45deg) scale(1);
+  opacity: 1;
+  left: 8px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  background-color: transparent;
+  border-radius: 0;
 }
 
 #taskTitle {
-    font-size: larger;
-    max-width: 300px;
-    height: fit-content;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    hyphens: auto;
-    margin: 20px 120px 20px 20px;
+  font-size: larger;
+  max-width: 300px;
+  height: fit-content;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  margin: 20px 120px 20px 20px;
 }
 
 .pseudoImportant {
-    font-size: larger;
-    max-width: 300px;
-    height: fit-content;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    hyphens: auto;
-    margin: 20px 120px 20px 20px;
+  font-size: larger;
+  max-width: 300px;
+  height: fit-content;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  margin: 20px 120px 20px 20px;
 }
 
 .pseudoImportant::before {
-    content: url('./images/important.svg');
-    padding: 10px;
+  content: url("./images/important.svg");
+  padding: 10px;
 }
 
 #dueDate {
-    display: flex;
-    flex-direction: column;
-    color: white;
-    padding: 0px 10px 10px 300px;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding: 0px 10px 10px 300px;
+  align-items: center;
 }
 
 #taskNotes {
-    display: flex;
-    flex-direction: column;
-    color: white;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center;
 }
 
 #notesContent {
-    max-width: 300px;
-    height: fit-content;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    hyphens: auto;
-    margin: 0px 20px 20px 20px;
+  max-width: 300px;
+  height: fit-content;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  margin: 0px 20px 20px 20px;
 }
 
 .banner {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: #6B768C;
-    background: linear-gradient(180deg, rgba(107,118,140,1) 21%, rgba(138,152,181,1) 100%);
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100px;
-    width: 100%;
-    z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #6b768c;
+  background: linear-gradient(
+    180deg,
+    rgba(107, 118, 140, 1) 21%,
+    rgba(138, 152, 181, 1) 100%
+  );
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100px;
+  width: 100%;
+  z-index: 1;
 }
 
 .bannerItems {
-    margin-left: 40px;
-    font-family: 'Rubik', sans-serif;
-    font-size: 160%;
+  margin-left: 40px;
+  font-family: "Rubik", sans-serif;
+  font-size: 160%;
 }
 
 .slogan {
-    font-size: 60%;
-    color: white;
-    font-style: italic;
+  font-size: 60%;
+  color: white;
+  font-style: italic;
 }
 
 #mainNav {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    text-align: left;
-    padding: 25px 20px 0px 25px;
-    font-family: inherit;
-    height: auto;
-    width: 200px;
-    flex: .5;
-    font-size: 150%;
-    color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: left;
+  padding: 25px 20px 0px 25px;
+  font-family: inherit;
+  height: auto;
+  width: 200px;
+  flex: 0.5;
+  font-size: 150%;
+  color: white;
 }
 
 #projectNavContainer {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    
-    margin-top: 5px;
-    font-family: inherit;
-    font-size: 175%;
-    font-weight: bold;
-    height: auto;
-    width: auto;
-    flex: 2;
-    color: white;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  margin-top: 5px;
+  font-family: inherit;
+  font-size: 175%;
+  font-weight: bold;
+  height: auto;
+  width: auto;
+  flex: 2;
+  color: white;
 }
 
 #projectHeader {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 #arrow {
-    margin-top: 13px;
-    transition-duration: 0.5s;
-     background-color: #6a6e77;
-     border-radius: 5px;
+  margin-top: 13px;
+  transition-duration: 0.5s;
+  background-color: #6a6e77;
+  border-radius: 5px;
 }
 
 .arrowDown {
-    margin-top: 13px;
-    transform: rotate(90deg);
-    transition-duration: 0.5s;
-    border-radius: 5px;
+  margin-top: 13px;
+  transform: rotate(90deg);
+  transition-duration: 0.5s;
+  border-radius: 5px;
 }
 
 #arrow:hover {
-    background-color: #6a6e77 ;
-    border-radius: 5px;
+  background-color: #6a6e77;
+  border-radius: 5px;
 }
 
 .mainNavItems {
-    width: 80%;
-    border-radius: 5px;
-    padding: 5px;
-    transition-duration: 0.3s;
+  width: 80%;
+  border-radius: 5px;
+  padding: 5px;
+  transition-duration: 0.3s;
 }
 
 #inbox::before {
-    content: url('./images/inbox.svg');
-    padding: 10px;
+  content: url("./images/inbox.svg");
+  padding: 10px;
 }
 #inbox:hover {
-    background-color: #6a6e77 ;
+  background-color: #6a6e77;
 }
 
 #today::before {
-    content: url('./images/today.svg');
-    padding: 10px;
+  content: url("./images/today.svg");
+  padding: 10px;
 }
 #today:hover {
-    background-color: #6a6e77 ;
+  background-color: #6a6e77;
 }
 
 #week::before {
-    content: url('./images/week.svg');
-    padding: 10px;
+  content: url("./images/week.svg");
+  padding: 10px;
 }
 
 #week:hover {
-    background-color: #6a6e77;
+  background-color: #6a6e77;
 }
 
 #month::before {
-    content: url('./images/month.svg');
-    padding: 10px;
+  content: url("./images/month.svg");
+  padding: 10px;
 }
 
 #month:hover {
-    background-color: #6a6e77;
+  background-color: #6a6e77;
 }
 
-#projectNavContainer 
-
-#projectTitle {
-    width: 150px;
-    border-radius: 5px;
+#projectNavContainer #projectTitle {
+  width: 150px;
+  border-radius: 5px;
 }
 
 #projectTitle::before {
-    content: url('./images/projects.svg');
-    padding: 10px;
+  content: url("./images/projects.svg");
+  padding: 10px;
 }
 
 #addProject::before {
-    content: url('./images/add.svg');
-    padding: 10px;
+  content: url("./images/add.svg");
+  padding: 10px;
 }
 
 .projectList {
-    display: flex;
-    flex-direction: row;
-    max-width: 500px;
-    border-radius: 5px;
-    margin-left: 50px;
-    padding: 5px;
-    font-weight: lighter;
-    color: #2DC86F;
+  display: flex;
+  flex-direction: row;
+  max-width: 500px;
+  border-radius: 5px;
+  margin-left: 50px;
+  padding: 5px;
+  font-weight: lighter;
+  color: #2dc86f;
 }
 
 .projectList:hover {
-    background-color: #6a6e77;
-    width: 200px;
+  background-color: #6a6e77;
+  width: 200px;
 }
 
 .projectTitle {
-    margin-left: 40px;
+  margin-left: 40px;
 }
 
 .projectTitleDisplay {
-    display: flex;
-    flex-direction: row;
-    font-family:'PT sans', sans-serif;
-    color: #2DC86F;
-    font-size: 275%;
-    padding: 20px;
+  display: flex;
+  flex-direction: row;
+  font-family: "PT sans", sans-serif;
+  color: #2dc86f;
+  font-size: 275%;
+  padding: 20px;
 }
 
 #projectsContainer {
-    visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    font-size: smaller;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  font-size: smaller;
 }
 
 #important::before {
-    content: url('./images/important.svg');
-    padding: 10px;
+  content: url("./images/important.svg");
+  padding: 10px;
 }
 
 #important:hover {
-    background-color: #6a6e77;
+  background-color: #6a6e77;
 }
-
-
-
-
-
